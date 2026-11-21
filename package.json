@@ -1,0 +1,13 @@
+{
+  "name": "design-vault",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "check:supply-chain": "node .github/scripts/check-pnpm-supply-chain.mjs"
+  }
+}

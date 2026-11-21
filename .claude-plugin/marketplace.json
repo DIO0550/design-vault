@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "design-vault",
+  "description": "どのリポジトリからでも読み込めるデザインシステム（トークンとガイドライン）",
+  "owner": {
+    "name": "DIO0550"
+  },
+  "plugins": [
+    {
+      "name": "design-system",
+      "description": "UI を実装・変更するときに従うデザイントークンとルール",
+      "source": "./plugins/design-system",
+      "category": "design"
+    }
+  ]
+}
