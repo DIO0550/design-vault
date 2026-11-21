@@ -14,14 +14,15 @@ permissions:
 
 jobs:
   check:
-    name: install / supply-chain
+    name: install / supply-chain / tokens
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
-          fetch-depth: 1
+          # lock の公開日検査が「lock を最後に変えたコミット」の日時を引くため、履歴をすべて取る
+          fetch-depth: 0
 
       - name: Setup pnpm
         uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
@@ -36,8 +37,24 @@ jobs:
       - name: pnpm のサプライチェーン設定
         run: pnpm check:supply-chain
 
+      # install より前に走らせ、新しすぎる版を一度も取り込まないようにする（依存なしで動く）
+      - name: lock の全パッケージの公開日
+        run: pnpm check:release-age
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: トークンの検証と生成
+        run: pnpm build:tokens
+
+      - name: 生成物がコミット済みのものと一致する
+        run: |
+          if [ -n "$(git status --porcelain -- dist plugins)" ]; then
+            git status --porcelain -- dist plugins
+            git diff -- dist plugins
+            echo "::error::生成物が古いままです。pnpm build:tokens を実行してコミットしてください"
+            exit 1
+          fi
 
       - name: プラグインのマニフェスト
         run: |

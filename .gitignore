@@ -155,3 +155,6 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# 生成物はコミットして CI で差分を見るため、ルートの dist/ だけは無視しない
+!/dist/

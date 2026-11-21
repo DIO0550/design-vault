@@ -8,6 +8,11 @@
     "node": ">=22"
   },
   "scripts": {
-    "check:supply-chain": "node .github/scripts/check-pnpm-supply-chain.mjs"
+    "check:supply-chain": "node .github/scripts/check-pnpm-supply-chain.mjs",
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "check:release-age": "node .github/scripts/check-lockfile-release-age.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.8.0"
   }
 }
