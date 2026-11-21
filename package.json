@@ -10,9 +10,19 @@
   "scripts": {
     "check:supply-chain": "node .github/scripts/check-pnpm-supply-chain.mjs",
     "build:tokens": "node scripts/build-tokens.mjs",
-    "check:release-age": "node .github/scripts/check-lockfile-release-age.mjs"
+    "check:release-age": "node .github/scripts/check-lockfile-release-age.mjs",
+    "site:dev": "vite --config site/vite.config.ts",
+    "site:build": "vite build --config site/vite.config.ts",
+    "site:typecheck": "tsc -p site"
   },
   "devDependencies": {
-    "style-dictionary": "^5.8.0"
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "style-dictionary": "^5.8.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8"
   }
 }

@@ -1,0 +1,169 @@
+/* このページは tokens.css の CSS 変数だけで書く（自分のデザインシステムを自分のページで使って確かめるため）。
+   レイアウトの幅など、トークンにない寸法だけは直書きする。 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font: var(--typography-body);
+  color: var(--color-text-default);
+  background: var(--color-bg-default);
+}
+
+code {
+  font: var(--typography-code);
+}
+
+.layout {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.header {
+  margin-bottom: var(--space-lg);
+}
+
+.title {
+  font: var(--typography-heading-lg);
+  margin: 0 0 var(--space-sm);
+}
+
+.lead {
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-md);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.nav-link {
+  font: var(--typography-body-sm);
+  color: var(--color-primary-default);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+}
+
+.nav-link:focus-visible {
+  outline: 2px solid var(--color-primary-default);
+  outline-offset: 2px;
+}
+
+.section {
+  padding-top: var(--space-lg);
+  scroll-margin-top: var(--space-md);
+}
+
+.heading {
+  font: var(--typography-heading-md);
+  margin: 0 0 var(--space-md);
+}
+
+.subheading {
+  font: var(--typography-body-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-md);
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.card {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  background: var(--color-bg-default);
+}
+
+.row {
+  display: grid;
+  /* 棒の幅が変わっても説明の位置が揃うよう、棒の列を最大の余白に合わせて固定する */
+  grid-template-columns: var(--space-lg) 1fr;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.swatch {
+  height: 72px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-default);
+  margin-bottom: var(--space-sm);
+}
+
+.token-meta {
+  display: grid;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.token-name {
+  overflow-wrap: anywhere;
+}
+
+.token-value {
+  font: var(--typography-code);
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}
+
+.token-description {
+  font: var(--typography-caption);
+  color: var(--color-text-muted);
+}
+
+.type-sample {
+  margin: 0 0 var(--space-sm);
+}
+
+.space-bar {
+  flex: none;
+  height: var(--space-md);
+  background: var(--color-primary-default);
+  border-radius: var(--radius-sm);
+}
+
+.radius-box {
+  height: 72px;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  margin-bottom: var(--space-sm);
+}
+
+.pairs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-sm);
+}
+
+.pair {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+}
+
+.pair-sample {
+  font: var(--typography-heading-md);
+}
+
+.pair-label {
+  font: var(--typography-caption);
+}
