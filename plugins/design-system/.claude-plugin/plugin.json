@@ -1,0 +1,8 @@
+{
+  "name": "design-system",
+  "version": "0.0.0",
+  "description": "UI を実装・変更するときに従うデザイントークンとルール",
+  "author": {
+    "name": "DIO0550"
+  }
+}
