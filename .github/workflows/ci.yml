@@ -56,6 +56,15 @@ jobs:
             exit 1
           fi
 
+      # SKILL.md には値を書かず、値は生成物の references/tokens.md だけに置く（値が 2 か所にあるとずれるため）。
+      # Do / Don't 表の Don't 列は直書きの悪い例として値を含むので、表の行は見ない
+      - name: SKILL.md に値が直書きされていない
+        run: |
+          if grep -nE '#[0-9a-fA-F]{3,8}\b|[0-9]+px' plugins/design-system/skills/design-system/SKILL.md | grep -v ':|'; then
+            echo "::error::SKILL.md に値が書かれています。値は tokens/tokens.json に置き、トークン名で参照してください"
+            exit 1
+          fi
+
       - name: プラグインのマニフェスト
         run: |
           node -e 'for (const f of process.argv.slice(1)) JSON.parse(require("fs").readFileSync(f, "utf8"))' \
