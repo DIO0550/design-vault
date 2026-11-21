@@ -1,0 +1,18 @@
+# 更新 PR は公開から 7 日経った版だけにする。pnpm-workspace.yaml の minimumReleaseAge（10080 分）と同じ考え方で、
+# 乗っ取られたアカウントから publish された版が発覚・取り下げられる窓を跨いでから取り込む。
+# github-actions の更新 PR では、Dependabot が .github/workflows/actions.lock も同じ PR で作り直す。
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
