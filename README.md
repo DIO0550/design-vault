@@ -38,7 +38,7 @@
 `CLAUDE.md` に 1 行入れて、UI 作業でスキルが確実に使われるようにし、使うパターンを指定する。
 
 ```markdown
-UI を実装・変更するときは design-system スキルの basic パターンに従う。
+UI を実装・変更するときは design-system スキルの composer パターンに従う。
 ```
 
 `tokens.css` の配布方法（npm パッケージか、git タグ / jsDelivr か）は未定。
