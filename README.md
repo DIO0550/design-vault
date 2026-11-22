@@ -1,10 +1,16 @@
 # design-vault
 
+[![ci](https://github.com/DIO0550/design-vault/actions/workflows/ci.yml/badge.svg)](https://github.com/DIO0550/design-vault/actions/workflows/ci.yml)
+[![pages](https://github.com/DIO0550/design-vault/actions/workflows/pages.yml/badge.svg)](https://github.com/DIO0550/design-vault/actions/workflows/pages.yml)
+
+**見本ページ: https://dio0550.github.io/design-vault/**
+
 どのリポジトリからでも Claude にデザインシステムを読み込ませ、人間も同じ内容をブラウザで確認できるようにするためのリポジトリ。
 
 - 正本は [`tokens/tokens.json`](tokens/tokens.json)（DTCG 形式）だけ。`dist/` と `references/tokens.md` はそこから生成する
 - AI 向け: Claude Code プラグイン `design-system`（[`SKILL.md`](plugins/design-system/skills/design-system/SKILL.md) + [`references/tokens.md`](plugins/design-system/skills/design-system/references/tokens.md)）
 - 実装向け: [`dist/tokens.css`](dist/tokens.css)（CSS 変数）・[`dist/tokens.ts`](dist/tokens.ts)
+- 人間向け: [見本ページ](https://dio0550.github.io/design-vault/)（[`site/`](site/)。色・文字・余白・角丸を並べ、ページ自体も `tokens.css` だけで組んでいる）。main へのマージで [`pages.yml`](.github/workflows/pages.yml) が自動でデプロイする
 
 ## 利用側リポジトリでの設定
 
@@ -37,6 +43,7 @@ UI を実装・変更するときは design-system スキルに従う。
 pnpm install
 pnpm build:tokens        # tokens.json を検証し、dist/ と references/tokens.md を生成する
 pnpm check:release-age   # lock の全パッケージが公開から 7 日以上経っているかを確かめる
+pnpm site:dev            # 見本ページを手元で開く（http://localhost:5173/design-vault/）
 ```
 
 - トークンを変えたら `pnpm build:tokens` を実行し、生成物も一緒にコミットする（CI が差分を見る）
