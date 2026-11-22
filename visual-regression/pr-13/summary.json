@@ -1,0 +1,37 @@
+{
+  "reportVersion": "3ab2a9f8990772a194658b33bde2f083c90ef22d",
+  "maxDiffRatio": 0.002,
+  "changed": 0,
+  "new": 2,
+  "deleted": 0,
+  "passed": 0,
+  "failed": 0,
+  "results": [
+    {
+      "story": "default--desktop",
+      "id": "default--desktop",
+      "title": "default",
+      "name": "desktop",
+      "status": "new",
+      "reason": "no-baseline",
+      "diffPixels": 0,
+      "diffRatio": 0,
+      "hasExpected": false,
+      "hasActual": true,
+      "hasDiff": false
+    },
+    {
+      "story": "default--mobile",
+      "id": "default--mobile",
+      "title": "default",
+      "name": "mobile",
+      "status": "new",
+      "reason": "no-baseline",
+      "diffPixels": 0,
+      "diffRatio": 0,
+      "hasExpected": false,
+      "hasActual": true,
+      "hasDiff": false
+    }
+  ]
+}
