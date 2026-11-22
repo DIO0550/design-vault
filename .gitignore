@@ -158,3 +158,8 @@ vite.config.ts.timestamp-*
 
 # 生成物はコミットして CI で差分を見るため、ルートの dist/ だけは無視しない
 !/dist/
+
+# VRT の撮影結果とレポート（CI と手元の作業用。gh-pages に置く）
+/visual-actual/
+/visual-baseline/
+/visual-report/
