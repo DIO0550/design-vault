@@ -80,10 +80,13 @@ pre {
   font-weight: 600;
 }
 
+/* 広い画面でサイドバーに張り付かないよう、本文の列を残りの幅の中央に置く */
 .content {
   min-width: 0;
-  max-width: 1080px;
-  padding: var(--space-lg);
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-lg) calc(var(--space-lg) * 1.5);
   display: grid;
   align-content: start;
   gap: var(--space-lg);
