@@ -1,5 +1,8 @@
-// 正本 tokens.json をビルド時に読み込み、ページで並べるための形に平らにする（実行時には fetch しない）。
-import source from "../../tokens/tokens.json";
+// 各パターンの正本 tokens.json をビルド時に読み込み、ページで並べるための形に平らにする（実行時には fetch しない）。
+const sources = import.meta.glob<Record<string, unknown>>("../../tokens/patterns/*/tokens.json", {
+  eager: true,
+  import: "default",
+});
 
 export type Token = Readonly<{
   /** `color.text.default` の形 */
@@ -43,9 +46,18 @@ const flatten = (node: Node, path: readonly string[], inheritedType: string): re
     .flatMap(([key, child]) => flatten(child as Node, [...path, key], type));
 };
 
-export const Tokens: readonly Token[] = flatten(source as Node, [], "");
+export type Pattern = Readonly<{ name: string; tokens: readonly Token[] }>;
 
-export const tokensOf = (category: string): readonly Token[] => Tokens.filter((t) => t.path.split(".")[0] === category);
+/** パターン名はフォルダ名。名前順に並べる */
+export const Patterns: readonly Pattern[] = Object.entries(sources)
+  .map(([file, source]) => ({
+    name: file.split("/").at(-2) ?? file,
+    tokens: flatten(source as Node, [], ""),
+  }))
+  .toSorted((a, b) => a.name.localeCompare(b.name));
+
+export const tokensOf = (pattern: Pattern, category: string): readonly Token[] =>
+  pattern.tokens.filter((t) => t.path.split(".")[0] === category);
 
 export const formatValue = (value: unknown): string => {
   if (Array.isArray(value)) return value.join(", ");

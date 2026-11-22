@@ -7,10 +7,16 @@
 
 どのリポジトリからでも Claude にデザインシステムを読み込ませ、人間も同じ内容をブラウザで確認できるようにするためのリポジトリ。
 
-- 正本は [`tokens/tokens.json`](tokens/tokens.json)（DTCG 形式）だけ。`dist/` と `references/tokens.md` はそこから生成する
-- AI 向け: Claude Code プラグイン `design-system`（[`SKILL.md`](plugins/design-system/skills/design-system/SKILL.md) + [`references/tokens.md`](plugins/design-system/skills/design-system/references/tokens.md)）
-- 実装向け: [`dist/tokens.css`](dist/tokens.css)（CSS 変数）・[`dist/tokens.ts`](dist/tokens.ts)
-- 人間向け: [見本ページ](https://dio0550.github.io/design-vault/)（[`site/`](site/)。色・文字・余白・角丸を並べ、ページ自体も `tokens.css` だけで組んでいる）。main へのマージで [`pages.yml`](.github/workflows/pages.yml) が自動でデプロイする
+デザインは**パターン**単位で持つ。パターンごとに値と使い分けが違い、トークン名は全パターンで揃えている（`tokens.css` を差し替えるだけで切り替えられる）。
+
+| 置き場所 | 中身 |
+| --- | --- |
+| `tokens/patterns/<パターン>/tokens.json` | 正本（DTCG 形式）。値はここにだけ書く |
+| `tokens/patterns/<パターン>/guide.md` | そのパターンの使い分け（手書き。値は書かない） |
+| `dist/<パターン>/tokens.css` / `tokens.ts` | 実装向けの生成物 |
+| `plugins/design-system/skills/design-system/references/<パターン>/DESIGN.md` | guide.md とトークン表を合わせた生成物。Claude 以外のエージェントや人もこれ 1 枚で読める |
+| [`SKILL.md`](plugins/design-system/skills/design-system/SKILL.md) | 全パターン共通のルールとパターンの選び方 |
+| [見本ページ](https://dio0550.github.io/design-vault/)（[`site/`](site/)） | パターンを切り替えて見比べられる。`?pattern=<名前>` で直接開ける。main へのマージで [`pages.yml`](.github/workflows/pages.yml) がデプロイする |
 
 ## 利用側リポジトリでの設定
 
@@ -29,10 +35,10 @@
 }
 ```
 
-`CLAUDE.md` に 1 行入れて、UI 作業でスキルが確実に使われるようにする。
+`CLAUDE.md` に 1 行入れて、UI 作業でスキルが確実に使われるようにし、使うパターンを指定する。
 
 ```markdown
-UI を実装・変更するときは design-system スキルに従う。
+UI を実装・変更するときは design-system スキルの composer パターンに従う。
 ```
 
 `tokens.css` の配布方法（npm パッケージか、git タグ / jsDelivr か）は未定。
@@ -41,12 +47,13 @@ UI を実装・変更するときは design-system スキルに従う。
 
 ```bash
 pnpm install
-pnpm build:tokens        # tokens.json を検証し、dist/ と references/tokens.md を生成する
+pnpm build:tokens        # 全パターンの tokens.json を検証し、dist/ と DESIGN.md を生成する
 pnpm check:release-age   # lock の全パッケージが公開から 7 日以上経っているかを確かめる
 pnpm site:dev            # 見本ページを手元で開く（http://localhost:5173/design-vault/）
 ```
 
-- トークンを変えたら `pnpm build:tokens` を実行し、生成物も一緒にコミットする（CI が差分を見る）
+- トークンや guide.md を変えたら `pnpm build:tokens` を実行し、生成物も一緒にコミットする（CI が差分を見る）
+- パターンを足すときは `tokens/patterns/<名前>/` に tokens.json と guide.md を置く。トークン名がほかのパターンと揃っていないとビルドが止まる
 - 依存の追加・更新は `pnpm-workspace.yaml` の `minimumReleaseAge`（7 日）に従う。Actions は `.github/workflows/actions.lock` で固定し、更新は `gh actions-lock` で行う
 
 ## 見本ページのプレビューと視覚差分（VRT）
