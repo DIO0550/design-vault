@@ -1,5 +1,5 @@
-import type { ReactElement } from "react";
-import { formatValue, type Token, Tokens, tokensOf } from "./tokens";
+import { type ReactElement, useState } from "react";
+import { formatValue, type Pattern, Patterns, type Token, tokensOf } from "./tokens";
 
 const Sections = [
   { id: "colors", title: "色" },
@@ -18,8 +18,8 @@ const TokenMeta = ({ token }: { token: Token }): ReactElement => (
   </div>
 );
 
-const ContrastPairs = (): ReactElement => {
-  const pairs = Tokens.flatMap((fg) => fg.contrastWith.map((bg) => ({ fg, bg })));
+const ContrastPairs = ({ pattern }: { pattern: Pattern }): ReactElement => {
+  const pairs = pattern.tokens.flatMap((fg) => fg.contrastWith.map((bg) => ({ fg, bg })));
   return (
     <div className="pairs">
       {pairs.map(({ fg, bg }) => (
@@ -38,10 +38,10 @@ const ContrastPairs = (): ReactElement => {
   );
 };
 
-const Colors = (): ReactElement => (
+const Colors = ({ pattern }: { pattern: Pattern }): ReactElement => (
   <>
     <div className="grid">
-      {tokensOf("color").map((t) => (
+      {tokensOf(pattern, "color").map((t) => (
         <div key={t.path} className="card">
           <div className="swatch" style={{ background: `var(${t.cssVar})` }} />
           <TokenMeta token={t} />
@@ -49,13 +49,13 @@ const Colors = (): ReactElement => (
       ))}
     </div>
     <h3 className="subheading">コントラストを確かめた組（4.5:1 以上）</h3>
-    <ContrastPairs />
+    <ContrastPairs pattern={pattern} />
   </>
 );
 
-const Typography = (): ReactElement => (
+const Typography = ({ pattern }: { pattern: Pattern }): ReactElement => (
   <div className="stack">
-    {tokensOf("typography").map((t) => (
+    {tokensOf(pattern, "typography").map((t) => (
       <div key={t.path} className="card">
         <p className="type-sample" style={{ font: `var(${t.cssVar})` }}>
           デザインシステム Design System 0123
@@ -66,9 +66,9 @@ const Typography = (): ReactElement => (
   </div>
 );
 
-const Spacing = (): ReactElement => (
+const Spacing = ({ pattern }: { pattern: Pattern }): ReactElement => (
   <div className="stack">
-    {tokensOf("space").map((t) => (
+    {tokensOf(pattern, "space").map((t) => (
       <div key={t.path} className="card row">
         <div className="space-bar" style={{ width: `var(${t.cssVar})` }} />
         <TokenMeta token={t} />
@@ -77,9 +77,9 @@ const Spacing = (): ReactElement => (
   </div>
 );
 
-const Radius = (): ReactElement => (
+const Radius = ({ pattern }: { pattern: Pattern }): ReactElement => (
   <div className="grid">
-    {tokensOf("radius").map((t) => (
+    {tokensOf(pattern, "radius").map((t) => (
       <div key={t.path} className="card">
         <div className="radius-box" style={{ borderRadius: `var(${t.cssVar})` }} />
         <TokenMeta token={t} />
@@ -88,27 +88,59 @@ const Radius = (): ReactElement => (
   </div>
 );
 
-const SectionBody = ({ id }: { id: (typeof Sections)[number]["id"] }): ReactElement => {
+const SectionBody = ({ id, pattern }: { id: (typeof Sections)[number]["id"]; pattern: Pattern }): ReactElement => {
   switch (id) {
     case "colors":
-      return <Colors />;
+      return <Colors pattern={pattern} />;
     case "typography":
-      return <Typography />;
+      return <Typography pattern={pattern} />;
     case "spacing":
-      return <Spacing />;
+      return <Spacing pattern={pattern} />;
     case "radius":
-      return <Radius />;
+      return <Radius pattern={pattern} />;
   }
 };
 
-export const App = (): ReactElement => (
-  <div className="layout">
+const PatternQueryKey = "pattern";
+
+/** ?pattern=<名前> で開いたパターンを選ぶ。見本ページの URL をパターンごとに共有できるようにするため */
+const readInitialPattern = (): Pattern => {
+  const requested = new URLSearchParams(window.location.search).get(PatternQueryKey);
+  return Patterns.find((p) => p.name === requested) ?? Patterns[0];
+};
+
+export const App = (): ReactElement => {
+  const [pattern, setPattern] = useState(readInitialPattern);
+  const selectPattern = (next: Pattern) => {
+    setPattern(next);
+    const url = new URL(window.location.href);
+    url.searchParams.set(PatternQueryKey, next.name);
+    window.history.replaceState(null, "", url);
+  };
+  return (
+  <div className="layout" data-design-pattern={pattern.name}>
     <header className="header">
       <h1 className="title">design-vault</h1>
       <p className="lead">
-        正本 <code>tokens/tokens.json</code> から生成したデザイントークンの見本。このページ自体も <code>tokens.css</code>{" "}
-        の CSS 変数だけで組んでいる。
+        パターンごとの正本 <code>tokens/patterns/*/tokens.json</code> から生成したデザイントークンの見本。このページ自体も、選んだパターンの CSS 変数だけで組んでいる。
       </p>
+      <div className="patterns" role="radiogroup" aria-label="パターン">
+        {Patterns.map((p) => (
+          <button
+            key={p.name}
+            type="button"
+            role="radio"
+            aria-checked={p.name === pattern.name}
+            className="pattern-button"
+            onClick={() => selectPattern(p)}
+          >
+            {p.name}
+          </button>
+        ))}
+        <a className="design-md-link" href={`https://github.com/DIO0550/design-vault/blob/main/plugins/design-system/skills/design-system/references/${pattern.name}/DESIGN.md`}>
+          DESIGN.md
+        </a>
+      </div>
       <nav className="nav">
         {Sections.map((s) => (
           <a key={s.id} href={`#${s.id}`} className="nav-link">
@@ -121,9 +153,10 @@ export const App = (): ReactElement => (
       {Sections.map((s) => (
         <section key={s.id} id={s.id} className="section">
           <h2 className="heading">{s.title}</h2>
-          <SectionBody id={s.id} />
+          <SectionBody id={s.id} pattern={pattern} />
         </section>
       ))}
     </main>
   </div>
-);
+  );
+};
