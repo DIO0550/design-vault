@@ -56,12 +56,12 @@ jobs:
             exit 1
           fi
 
-      # SKILL.md と各パターンの guide.md には値を書かず、値は tokens.json（と生成物の DESIGN.md）だけに置く（値が 2 か所にあるとずれるため）。
+      # SKILL.md・components.md・各パターンの guide.md には値を書かず、値は tokens.json（と生成物の DESIGN.md）だけに置く（値が 2 か所にあるとずれるため）。
       # Do / Don't 表の Don't 列は直書きの悪い例として値を含むので、表の行は見ない
-      - name: SKILL.md と guide.md に値が直書きされていない
+      - name: SKILL.md・components.md・guide.md に値が直書きされていない
         run: |
-          if grep -nE '#[0-9a-fA-F]{3,8}\b|[0-9]+px' plugins/design-system/skills/design-system/SKILL.md tokens/patterns/*/guide.md | grep -vE '^[^:]+:[0-9]+:\|'; then
-            echo "::error::SKILL.md か guide.md に値が書かれています。値は tokens.json に置き、トークン名で参照してください"
+          if grep -nE '#[0-9a-fA-F]{3,8}\b|[0-9]+px' plugins/design-system/skills/design-system/SKILL.md plugins/design-system/skills/design-system/references/components.md tokens/patterns/*/guide.md | grep -vE '^[^:]+:[0-9]+:\|'; then
+            echo "::error::SKILL.md・components.md・guide.md のどれかに値が書かれています。値は tokens.json に置き、トークン名で参照してください"
             exit 1
           fi
 
