@@ -1,4 +1,5 @@
 /* このページは tokens.css の CSS 変数だけで書く（自分のデザインシステムを自分のページで使って確かめるため）。
+   外枠は App.tsx の ChromePatternName のパターン、見本の枠の中は選んだパターンの変数で描く。
    レイアウトの幅など、トークンにない寸法だけは直書きする。 */
 *,
 *::before,
@@ -10,120 +11,413 @@ body {
   margin: 0;
 }
 
-/* 変数は data-design-pattern を付けた .layout の下にしかないため、地と文字もここで敷く */
+/* 変数は data-design-pattern を付けた要素の下にしかないため、地と文字もここで敷く */
 .layout {
   min-height: 100vh;
-  font: var(--typography-body);
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  font: var(--typography-body-sm);
   color: var(--color-text-default);
   background: var(--color-bg-default);
 }
 
-code {
+code,
+pre {
   font: var(--typography-code);
 }
 
-.layout > * {
-  max-width: 1080px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-md);
-  padding-right: var(--space-md);
+.sidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  height: 100vh;
+  overflow-y: auto;
+  display: grid;
+  align-content: start;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  background: var(--color-bg-subtle);
+  border-right: 1px solid var(--color-border-default);
 }
 
-.header {
-  padding-top: var(--space-lg);
+.site-title {
+  font: var(--typography-heading-md);
+  color: var(--color-text-default);
+  text-decoration: none;
+  padding: 0 var(--space-sm);
 }
 
-main {
-  padding-bottom: var(--space-lg);
+.nav {
+  display: grid;
+  gap: var(--space-md);
 }
 
-.patterns {
+.nav-group {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.nav-group-title {
+  font: var(--typography-caption);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  padding: 0 var(--space-sm) var(--space-xs);
+}
+
+.nav-link {
+  color: var(--color-text-default);
+  text-decoration: none;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+}
+
+.nav-link:hover {
+  background: var(--color-bg-hover);
+}
+
+.nav-link[aria-current="page"] {
+  background: var(--color-primary-subtle);
+  font-weight: 600;
+}
+
+/* 広い画面でサイドバーに張り付かないよう、本文の列を残りの幅の中央に置く */
+.content {
+  min-width: 0;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--space-lg) calc(var(--space-lg) * 1.5);
+  display: grid;
+  align-content: start;
+  gap: var(--space-lg);
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.page-heading {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.breadcrumb {
+  font: var(--typography-caption);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.heading {
+  font: var(--typography-heading-lg);
+  margin: 0;
+}
+
+.lead {
+  font: var(--typography-body);
+  color: var(--color-text-muted);
+  max-width: 640px;
+  margin: 0;
+}
+
+.doc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.link {
+  color: var(--color-primary-default);
+}
+
+.link--strong {
+  font-weight: 600;
+}
+
+.nav-link:focus-visible,
+.site-title:focus-visible,
+.link:focus-visible,
+.pattern-select-button:focus-visible,
+.pattern-select-list:focus-visible {
+  outline: 2px solid var(--color-primary-default);
+  outline-offset: 2px;
+}
+
+/* パターン選択（PatternSelect.tsx） */
+.pattern-select {
+  position: relative;
+  display: grid;
+  gap: var(--space-xs);
+  min-width: 280px;
+}
+
+.pattern-select-label {
+  font: var(--typography-caption);
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.pattern-select-button,
+.pattern-select-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: left;
+}
+
+.pattern-select-button {
+  font: inherit;
+  color: var(--color-text-default);
+  background: var(--color-bg-default);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-sm);
+  cursor: pointer;
+}
+
+.pattern-select-caret {
+  flex: none;
+  color: var(--color-text-muted);
+}
+
+.pattern-select-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin: var(--space-xs) 0 0;
+  padding: var(--space-xs);
+  list-style: none;
+  background: var(--color-bg-default);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  /* 本文の上に浮いて見えるよう影を付ける。影の色はトークンに無いので反転面の色から作る */
+  box-shadow:
+    0 2px 4px color-mix(in srgb, var(--color-bg-inverse) 8%, transparent),
+    0 12px 32px color-mix(in srgb, var(--color-bg-inverse) 18%, transparent);
+}
+
+.pattern-select-option {
+  padding: var(--space-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.pattern-select-option[data-active="true"] {
+  background: var(--color-bg-hover);
+}
+
+.pattern-select-option[aria-selected="true"] {
+  background: var(--color-primary-subtle);
+}
+
+.pattern-text {
+  flex: 1;
+  display: grid;
+  min-width: 0;
+}
+
+.pattern-name {
+  font-weight: 600;
+}
+
+.pattern-summary {
+  font: var(--typography-caption);
+  color: var(--color-text-muted);
+}
+
+.pattern-swatches,
+.pattern-card-chips {
+  flex: none;
+  display: flex;
+  gap: 2px;
+}
+
+.pattern-swatches > span,
+.pattern-card-chips > span {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-default);
+}
+
+/* 見本の枠。枠の帯は外枠のパターン、本体は data-design-pattern で選んだパターン */
+.specimen {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.specimen-frame {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.specimen-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-xs) var(--space-md);
+  font: var(--typography-caption);
+  color: var(--color-text-muted);
+  background: var(--color-bg-subtle);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.specimen-bar code {
+  font: inherit;
+}
+
+.specimen-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  font: var(--typography-body);
+  color: var(--color-text-default);
+  background: var(--color-bg-canvas);
+  overflow-x: auto;
+}
+
+.specimen-body .dv-field {
+  width: 200px;
+}
+
+.token-list {
+  display: grid;
+  margin: 0;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+}
+
+.token-list-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 200px) minmax(0, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.token-list-row:first-child {
+  border-top: none;
+}
+
+.token-list-row dt {
+  color: var(--color-text-muted);
+}
+
+.token-list-row dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ホーム */
+.section {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.section-title,
+.subheading {
+  font: var(--typography-label);
+  margin: 0;
+}
+
+.subheading {
+  color: var(--color-text-muted);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-md);
+}
+
+.pattern-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.pattern-card-preview {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-sm);
-  margin-bottom: var(--space-md);
-}
-
-.pattern-button {
-  font: var(--typography-body-sm);
+  padding: var(--space-lg);
+  font: var(--typography-body);
   color: var(--color-text-default);
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-sm);
-  padding: var(--space-xs) var(--space-md);
-  cursor: pointer;
+  background: var(--color-bg-canvas);
 }
 
-.pattern-button[aria-checked="true"] {
-  color: var(--color-primary-on);
-  background: var(--color-primary-default);
-  border-color: var(--color-primary-default);
+.pattern-card-chips {
+  margin-left: auto;
 }
 
-.pattern-button:focus-visible,
-.design-md-link:focus-visible {
-  outline: 2px solid var(--color-primary-default);
-  outline-offset: 2px;
+.pattern-card-body {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
+  padding: var(--space-md);
 }
 
-.design-md-link {
-  font: var(--typography-body-sm);
-  color: var(--color-primary-default);
+.pattern-card-name {
+  font: var(--typography-heading-md);
+  margin: 0;
 }
 
-.header {
-  margin-bottom: var(--space-lg);
-}
-
-.title {
-  font: var(--typography-heading-lg);
-  margin: 0 0 var(--space-sm);
-}
-
-.lead {
+.pattern-card-intro,
+.card-text {
   color: var(--color-text-muted);
-  margin: 0 0 var(--space-md);
+  margin: 0;
 }
 
-.nav {
+.pattern-card-summary {
+  font: var(--typography-caption);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.pattern-card-links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-sm);
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
 }
 
-.nav-link {
-  font: var(--typography-body-sm);
-  color: var(--color-primary-default);
-  text-decoration: none;
-  padding: var(--space-xs) var(--space-md);
+.card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xs);
   border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  background: var(--color-bg-default);
 }
 
-.nav-link:focus-visible {
-  outline: 2px solid var(--color-primary-default);
-  outline-offset: 2px;
+.card-title {
+  font-weight: 600;
 }
 
-.section {
-  padding-top: var(--space-lg);
-  scroll-margin-top: var(--space-md);
+.snippet {
+  margin: 0;
+  padding: var(--space-md);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
 }
 
-.heading {
-  font: var(--typography-heading-md);
-  margin: 0 0 var(--space-md);
-}
-
-.subheading {
-  font: var(--typography-body-sm);
-  font-weight: 700;
-  color: var(--color-text-muted);
-  margin: var(--space-lg) 0 var(--space-sm);
-}
-
+/* 基礎の画面（Foundations.tsx） */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -135,17 +429,10 @@ main {
   gap: var(--space-md);
 }
 
-.card {
-  border: 1px solid var(--color-border-default);
-  border-radius: var(--radius-md);
-  padding: var(--space-md);
-  background: var(--color-bg-default);
-}
-
 .row {
   display: grid;
   /* 棒の幅が変わっても説明の位置が揃うよう、棒の列を最大の余白に合わせて固定する */
-  grid-template-columns: var(--space-lg) 1fr;
+  grid-template-columns: 64px 1fr;
   align-items: center;
   gap: var(--space-md);
 }
@@ -179,12 +466,13 @@ main {
 }
 
 .type-sample {
+  color: var(--color-text-default);
   margin: 0 0 var(--space-sm);
 }
 
 .space-bar {
   flex: none;
-  height: var(--space-md);
+  height: 16px;
   background: var(--color-primary-default);
   border-radius: var(--radius-sm);
 }
@@ -216,4 +504,48 @@ main {
 
 .pair-label {
   font: var(--typography-caption);
+}
+
+.grid + .subheading {
+  margin-top: var(--space-lg);
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-default);
+  }
+
+  .nav {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  /* 見出しのない画面（ホーム）は 1 行を占め、見出しのある段と横に並べない */
+  .nav-group--loose {
+    grid-column: 1 / -1;
+  }
+
+  .content {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .pattern-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .token-list-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-2xs);
+  }
 }

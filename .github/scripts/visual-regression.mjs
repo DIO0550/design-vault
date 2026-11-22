@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // 見本ページ（site/）の視覚差分（VRT）。design-composer の Storybook 用 VRT
 // （.github/scripts/storybook-visual-regression.mjs）を移植し、撮影対象を Storybook の
-// ストーリーから「見本ページ × パターン × 画面幅」へ置き換えたもの。比較とレポートは同じ。
+// ストーリーから「見本ページのパターン × 画面 × 画面幅」へ置き換えたもの。比較とレポートは同じ。
 //
-//   capture: ビルド済みの見本ページを配信し、パターンごと・画面幅ごとにページ全体を撮る
+//   capture: ビルド済みの見本ページを配信し、パターンごと・画面（site/src/pages.json）ごと・画面幅ごとにページ全体を撮る
 //   compare: 撮影結果を baseline と比べ、レポート（index.html / summary.json）を書き出す
 import { createServer } from "node:http";
 import { spawn, spawnSync } from "node:child_process";
@@ -215,19 +215,49 @@ const listPatterns = (patternsDir) => {
 };
 
 /**
- * 撮影対象（パターン × 画面幅）を並べる。id は画像のファイル名とレポートの見出しに使う。
- * パターンが無いときは `?pattern=` を付けずにページを 1 枚だけ撮る。
+ * 見本ページの画面の一覧を、見本ページ自身が使う `site/src/pages.json` から読む。
+ * 画面を足したときに撮影対象の書き足しを忘れないよう、一覧を 1 か所にしている。
+ *
+ * @returns 画面の一覧。pages.json が無い（画面分けする前の）ときは空
  */
-const listTargets = (patternsDir) => {
+const listPages = (pagesFile) => {
+  if (!existsSync(pagesFile)) {
+    return [];
+  }
+  return JSON.parse(readFileSync(pagesFile, "utf8"));
+};
+
+/**
+ * 撮影対象（パターン × 画面 × 画面幅）を並べる。id は画像のファイル名とレポートの見出しに使う。
+ * パターンや画面が無いときは、その軸のクエリを付けずに撮る。group が null の画面（ホーム）は
+ * どのパターンを選んでいても同じ中身なので、パターンを付けずに 1 回だけ撮る。
+ */
+const listTargets = (patternsDir, pagesFile) => {
   const patterns = listPatterns(patternsDir);
-  const pages = patterns.length === 0
-    ? [{ key: "default", title: "default", query: "" }]
-    : patterns.map((pattern) => ({ key: pattern, title: pattern, query: `?pattern=${encodeURIComponent(pattern)}` }));
-  return pages.flatMap((page) => Viewports.map((viewport) => ({
-    id: `${page.key}--${viewport.name}`,
-    title: page.title,
+  const patternAxis = patterns.length === 0
+    ? [{ key: "default", title: "default", params: [] }]
+    : patterns.map((pattern) => ({ key: pattern, title: pattern, params: [["pattern", pattern]] }));
+  const pages = listPages(pagesFile);
+  const pageTargetOf = (page) => ({
+    key: page.id.replaceAll("/", "__"),
+    title: page.group === null ? page.title : `${page.group} / ${page.title}`,
+    params: [["page", page.id]],
+  });
+  const patternPages = pages.length === 0
+    ? [{ key: "", title: "", params: [] }]
+    : pages.filter((page) => page.group !== null).map(pageTargetOf);
+  const sharedPages = pages.filter((page) => page.group === null).map(pageTargetOf);
+  const perPattern = patternAxis.flatMap((pattern) => patternPages.map((page) => ({
+    key: [pattern.key, page.key].filter(Boolean).join("--"),
+    title: [pattern.title, page.title].filter(Boolean).join(" / "),
+    params: [...pattern.params, ...page.params],
+  })));
+  const combined = [...sharedPages, ...perPattern];
+  return combined.flatMap((target) => Viewports.map((viewport) => ({
+    id: `${target.key}--${viewport.name}`,
+    title: target.title,
     name: viewport.name,
-    query: page.query,
+    query: target.params.length === 0 ? "" : `?${new URLSearchParams(target.params)}`,
     viewport,
   })));
 };
@@ -236,6 +266,7 @@ const capture = async (options) => {
   const siteDir = options["site-dir"] ?? "site/dist";
   const base = options.base ?? "/design-vault/";
   const patternsDir = options["patterns-dir"] ?? "tokens/patterns";
+  const pagesFile = options["pages-file"] ?? "site/src/pages.json";
   const out = options.out ?? "visual-actual";
   const maxHeight = Number(options["max-height"] ?? 12000);
   const settleMs = Number(options["settle-ms"] ?? 750);
@@ -294,7 +325,7 @@ const capture = async (options) => {
       throw new Error(describeChromeFailure());
     }
     await assertJapaneseFontAvailable();
-    const targets = listTargets(patternsDir);
+    const targets = listTargets(patternsDir, pagesFile);
     writeFileSync(join(out, "targets.json"), JSON.stringify(targets.map(({ id, title, name }) => ({ id, title, name })), null, 2));
     const unstable = [];
     const truncated = [];

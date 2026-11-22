@@ -1,162 +1,134 @@
 import { type ReactElement, useState } from "react";
-import { formatValue, type Pattern, Patterns, type Token, tokensOf } from "./tokens";
+import { PatternSelect } from "./PatternSelect";
+import { BadgePage, ButtonPage, InputPage, ListRowPage, PanelPage } from "./pages/Components";
+import { Colors, Radius, Spacing, Typography } from "./pages/Foundations";
+import { Home } from "./pages/Home";
+import { navSections, type Page, Pages } from "./pages";
+import { type Pattern, Patterns } from "./tokens";
 
-const Sections = [
-  { id: "colors", title: "色" },
-  { id: "typography", title: "文字" },
-  { id: "spacing", title: "余白" },
-  { id: "radius", title: "角丸" },
-] as const;
+/**
+ * ページの外枠（ナビ・見出し・説明）を描くパターン。見本の枠の中だけを選んだパターンで描き、
+ * 外枠はどのパターンを選んでも読みやすい同じ見た目に保つ（11px のような密なパターンで説明まで小さくしない）。
+ */
+const ChromePatternName = "basic";
 
-const cssVarOf = (path: string): string => `--${path.replaceAll(".", "-")}`;
-
-const TokenMeta = ({ token }: { token: Token }): ReactElement => (
-  <div className="token-meta">
-    <code className="token-name">{token.cssVar}</code>
-    <span className="token-value">{formatValue(token.value)}</span>
-    <span className="token-description">{token.description}</span>
-  </div>
-);
-
-const ContrastPairs = ({ pattern }: { pattern: Pattern }): ReactElement => {
-  const pairs = pattern.tokens.flatMap((fg) => fg.contrastWith.map((bg) => ({ fg, bg })));
-  return (
-    <div className="pairs">
-      {pairs.map(({ fg, bg }) => (
-        <div
-          key={`${fg.path}-${bg}`}
-          className="pair"
-          style={{ color: `var(${fg.cssVar})`, background: `var(${cssVarOf(bg)})` }}
-        >
-          <span className="pair-sample">Aa あア</span>
-          <code className="pair-label">
-            {fg.path} on {bg}
-          </code>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const Colors = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <>
-    <div className="grid">
-      {tokensOf(pattern, "color").map((t) => (
-        <div key={t.path} className="card">
-          <div className="swatch" style={{ background: `var(${t.cssVar})` }} />
-          <TokenMeta token={t} />
-        </div>
-      ))}
-    </div>
-    <h3 className="subheading">コントラストを確かめた組（4.5:1 以上）</h3>
-    <ContrastPairs pattern={pattern} />
-  </>
-);
-
-const Typography = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <div className="stack">
-    {tokensOf(pattern, "typography").map((t) => (
-      <div key={t.path} className="card">
-        <p className="type-sample" style={{ font: `var(${t.cssVar})` }}>
-          デザインシステム Design System 0123
-        </p>
-        <TokenMeta token={t} />
-      </div>
-    ))}
-  </div>
-);
-
-const Spacing = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <div className="stack">
-    {tokensOf(pattern, "space").map((t) => (
-      <div key={t.path} className="card row">
-        <div className="space-bar" style={{ width: `var(${t.cssVar})` }} />
-        <TokenMeta token={t} />
-      </div>
-    ))}
-  </div>
-);
-
-const Radius = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <div className="grid">
-    {tokensOf(pattern, "radius").map((t) => (
-      <div key={t.path} className="card">
-        <div className="radius-box" style={{ borderRadius: `var(${t.cssVar})` }} />
-        <TokenMeta token={t} />
-      </div>
-    ))}
-  </div>
-);
-
-const SectionBody = ({ id, pattern }: { id: (typeof Sections)[number]["id"]; pattern: Pattern }): ReactElement => {
-  switch (id) {
-    case "colors":
-      return <Colors pattern={pattern} />;
-    case "typography":
-      return <Typography pattern={pattern} />;
-    case "spacing":
-      return <Spacing pattern={pattern} />;
-    case "radius":
-      return <Radius pattern={pattern} />;
-  }
+/** pages.json の id → 画面の中身（ホーム以外）。pages.json に足した画面がここに無ければ「まだありません」と出す */
+const PageBodies: Readonly<Record<string, (props: { pattern: Pattern }) => ReactElement>> = {
+  "foundations/colors": Colors,
+  "foundations/typography": Typography,
+  "foundations/spacing": Spacing,
+  "foundations/radius": Radius,
+  "components/button": ButtonPage,
+  "components/input": InputPage,
+  "components/list-row": ListRowPage,
+  "components/panel": PanelPage,
+  "components/badge": BadgePage,
 };
 
 const PatternQueryKey = "pattern";
+const PageQueryKey = "page";
 
-/** ?pattern=<名前> で開いたパターンを選ぶ。見本ページの URL をパターンごとに共有できるようにするため */
-const readInitialPattern = (): Pattern => {
-  const requested = new URLSearchParams(window.location.search).get(PatternQueryKey);
-  return Patterns.find((p) => p.name === requested) ?? Patterns[0];
+type Location = Readonly<{ pattern: Pattern; page: Page }>;
+
+/**
+ * 表示する画面は ?pattern=<名前>&page=<id> で決める。ハッシュやパスで分けないのは、
+ * GitHub Pages で直接リンクを開いても 404 にならず、VRT も URL だけで各画面を撮れるようにするため。
+ */
+const readLocation = (): Location => {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    pattern: Patterns.find((p) => p.name === params.get(PatternQueryKey)) ?? Patterns[0],
+    page: Pages.find((p) => p.id === params.get(PageQueryKey)) ?? Pages[0],
+  };
 };
 
+const hrefOf = ({ pattern, page }: Location): string => {
+  const params = new URLSearchParams({ [PatternQueryKey]: pattern.name, [PageQueryKey]: page.id });
+  return `?${params}`;
+};
+
+const designMdUrlOf = (pattern: Pattern): string =>
+  `https://github.com/DIO0550/design-vault/blob/main/plugins/design-system/skills/design-system/references/${pattern.name}/DESIGN.md`;
+
+const componentsMdUrl =
+  "https://github.com/DIO0550/design-vault/blob/main/plugins/design-system/skills/design-system/references/components.md";
+
+/** ホームの「見本を開く」の行き先。基礎の最初の画面 */
+const FirstSpecimenPage = Pages.find((p) => p.group !== null) ?? Pages[0];
+
 export const App = (): ReactElement => {
-  const [pattern, setPattern] = useState(readInitialPattern);
-  const selectPattern = (next: Pattern) => {
-    setPattern(next);
-    const url = new URL(window.location.href);
-    url.searchParams.set(PatternQueryKey, next.name);
-    window.history.replaceState(null, "", url);
+  const [location, setLocation] = useState(readLocation);
+  const { pattern, page } = location;
+  const navigate = (next: Location) => {
+    setLocation(next);
+    window.history.pushState(null, "", hrefOf(next));
   };
+  const linkTo = (next: Location) => ({
+    href: hrefOf(next),
+    onClick: (event: { preventDefault: () => void }) => {
+      event.preventDefault();
+      navigate(next);
+    },
+  });
+  const Body = PageBodies[page.id];
+
   return (
-  <div className="layout" data-design-pattern={pattern.name}>
-    <header className="header">
-      <h1 className="title">design-vault</h1>
-      <p className="lead">
-        パターンごとの正本 <code>tokens/patterns/*/tokens.json</code> から生成したデザイントークンの見本。このページ自体も、選んだパターンの CSS 変数だけで組んでいる。
-      </p>
-      <div className="patterns" role="radiogroup" aria-label="パターン">
-        {Patterns.map((p) => (
-          <button
-            key={p.name}
-            type="button"
-            role="radio"
-            aria-checked={p.name === pattern.name}
-            className="pattern-button"
-            onClick={() => selectPattern(p)}
-          >
-            {p.name}
-          </button>
-        ))}
-        <a className="design-md-link" href={`https://github.com/DIO0550/design-vault/blob/main/plugins/design-system/skills/design-system/references/${pattern.name}/DESIGN.md`}>
-          DESIGN.md
+    <div className="layout" data-design-pattern={ChromePatternName}>
+      <aside className="sidebar">
+        <a className="site-title" {...linkTo({ pattern, page: Pages[0] })}>
+          デザインシステム
         </a>
-      </div>
-      <nav className="nav">
-        {Sections.map((s) => (
-          <a key={s.id} href={`#${s.id}`} className="nav-link">
-            {s.title}
-          </a>
-        ))}
-      </nav>
-    </header>
-    <main>
-      {Sections.map((s) => (
-        <section key={s.id} id={s.id} className="section">
-          <h2 className="heading">{s.title}</h2>
-          <SectionBody id={s.id} pattern={pattern} />
-        </section>
-      ))}
-    </main>
-  </div>
+        <nav className="nav" aria-label="画面">
+          {navSections().map(({ group, pages }) => (
+            <div key={group ?? pages[0].id} className={group === null ? "nav-group nav-group--loose" : "nav-group"}>
+              {group !== null && <div className="nav-group-title">{group}</div>}
+              {pages.map((p) => (
+                <a
+                  key={p.id}
+                  className="nav-link"
+                  aria-current={p.id === page.id ? "page" : undefined}
+                  {...linkTo({ pattern, page: p })}
+                >
+                  {p.title}
+                </a>
+              ))}
+            </div>
+          ))}
+        </nav>
+      </aside>
+      <main className="content">
+        <header className="page-header">
+          <div className="page-heading">
+            {page.group !== null && <p className="breadcrumb">{page.group}</p>}
+            <h1 className="heading">{page.group === null ? "デザインシステム" : page.title}</h1>
+          </div>
+          {page.group !== null && (
+            <PatternSelect value={pattern} onChange={(next) => navigate({ pattern: next, page })} />
+          )}
+        </header>
+        {page.group === null ? (
+          <Home
+            hrefOf={(p) => hrefOf({ pattern: p, page: FirstSpecimenPage })}
+            designMdUrlOf={designMdUrlOf}
+          />
+        ) : Body ? (
+          <>
+            <p className="doc-links">
+              <a className="link" href={designMdUrlOf(pattern)}>
+                {pattern.name} の DESIGN.md
+              </a>
+              {page.id.startsWith("components/") && (
+                <a className="link" href={componentsMdUrl}>
+                  components.md
+                </a>
+              )}
+            </p>
+            <Body pattern={pattern} />
+          </>
+        ) : (
+          <p>この画面はまだありません。</p>
+        )}
+      </main>
+    </div>
   );
 };

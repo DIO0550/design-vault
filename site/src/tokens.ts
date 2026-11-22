@@ -64,3 +64,28 @@ export const formatValue = (value: unknown): string => {
   if (isNode(value)) return Object.entries(value).map(([k, v]) => `${k}: ${String(v)}`).join("; ");
   return String(value);
 };
+
+const guides = import.meta.glob<string>("../../tokens/patterns/*/guide.md", {
+  eager: true,
+  query: "?raw",
+  import: "default",
+});
+
+/** guide.md の最初の段落を、コード表記の記号を外して 1 文の説明として使う */
+export const introOf = (pattern: Pattern): string => {
+  const entry = Object.entries(guides).find(([file]) => file.split("/").at(-2) === pattern.name);
+  const firstParagraph = entry?.[1].trim().split(/\n\s*\n/)[0] ?? "";
+  return firstParagraph.replaceAll("`", "").replaceAll("\n", "");
+};
+
+const valueAt = (pattern: Pattern, path: string): unknown => pattern.tokens.find((t) => t.path === path)?.value;
+
+/** パターン選択とホームに出す一言（文字・本文の大きさ・アクセント） */
+export const summaryOf = (pattern: Pattern): string => {
+  const families = valueAt(pattern, "font.family.sans");
+  const font = Array.isArray(families) ? String(families[0]) : "";
+  const body = valueAt(pattern, "typography.body");
+  const size = isNode(body) ? String(body.fontSize) : "";
+  const primary = String(valueAt(pattern, "color.primary.default") ?? "");
+  return `${font}・本文 ${size}・アクセント ${primary}`;
+};

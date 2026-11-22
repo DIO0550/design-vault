@@ -12,11 +12,13 @@
 | 置き場所 | 中身 |
 | --- | --- |
 | `tokens/patterns/<パターン>/tokens.json` | 正本（DTCG 形式）。値はここにだけ書く |
-| `tokens/patterns/<パターン>/guide.md` | そのパターンの使い分け（手書き。値は書かない） |
+| `tokens/patterns/<パターン>/guide.md` | そのパターンの使い分け（手書き。値は書かない）。冒頭の段落が DESIGN.md の Overview になり、見出しは DESIGN.md の節の名前（Colors / Typography / Layout / Shapes / Do's and Don'ts など）を仕様の順に使う |
 | `dist/<パターン>/tokens.css` / `tokens.ts` | 実装向けの生成物 |
-| `plugins/design-system/skills/design-system/references/<パターン>/DESIGN.md` | guide.md とトークン表を合わせた生成物。Claude 以外のエージェントや人もこれ 1 枚で読める |
+| `plugins/design-system/skills/design-system/references/<パターン>/DESIGN.md` | [Google の DESIGN.md 仕様](https://github.com/google-labs-code/design.md)の形の生成物。先頭の YAML に tokens.json と `tokens/components.json` のトークン、本文に guide.md の使い分け。Claude 以外のエージェントや DESIGN.md 対応のツールもこれ 1 枚で読める。CI が公式の linter（`pnpm lint:design-md`）で検査する |
+| `tokens/components.json` | 部品の各部分に使うトークン（全パターン共通）。DESIGN.md の `components` になる |
 | [`SKILL.md`](plugins/design-system/skills/design-system/SKILL.md) | 全パターン共通のルールとパターンの選び方 |
-| [見本ページ](https://dio0550.github.io/design-vault/)（[`site/`](site/)） | パターンを切り替えて見比べられる。`?pattern=<名前>` で直接開ける。main へのマージで [`pages.yml`](.github/workflows/pages.yml) がデプロイする |
+| [`references/components.md`](plugins/design-system/skills/design-system/references/components.md) | 部品（ボタン・入力欄・リストの行・パネル・バッジ）の各部分にどのトークンを使うか。パターンに依らない |
+| [見本ページ](https://dio0550.github.io/design-vault/)（[`site/`](site/)） | ホームにパターンの一覧を置き、サイドバーから基礎（色・文字・余白・角丸）とコンポーネントの画面を開く。外枠は basic パターンで描き、見本の枠の中だけを右上で選んだパターンで描く。`?pattern=<名前>&page=<画面>` で直接開ける。画面の一覧は [`site/src/pages.json`](site/src/pages.json)。main へのマージで [`pages.yml`](.github/workflows/pages.yml) がデプロイする |
 
 ## 利用側リポジトリでの設定
 
@@ -48,6 +50,7 @@ UI を実装・変更するときは design-system スキルの composer パタ�
 ```bash
 pnpm install
 pnpm build:tokens        # 全パターンの tokens.json を検証し、dist/ と DESIGN.md を生成する
+pnpm lint:design-md      # 生成した DESIGN.md を公式の linter で検査する（error で失敗、warning は表示のみ）
 pnpm check:release-age   # lock の全パッケージが公開から 7 日以上経っているかを確かめる
 pnpm site:dev            # 見本ページを手元で開く（http://localhost:5173/design-vault/）
 ```
@@ -64,7 +67,7 @@ design-composer の Storybook 向けの仕組みを見本ページ向けに移�
 | --- | --- | --- |
 | [`pages.yml`](.github/workflows/pages.yml)（main） | ルート・`visual-baseline/` | 見本ページ本体と、VRT の baseline の撮り直し |
 | [`pr-preview.yml`](.github/workflows/pr-preview.yml)（PR） | `pr-preview/pr-<番号>/` | PR の見本ページ。URL を PR に固定コメントで貼る。PR を閉じると消す |
-| [`visual-regression.yml`](.github/workflows/visual-regression.yml)（PR） | `visual-regression/pr-<番号>/` | パターンごと・画面幅（desktop 1280 / mobile 390）ごとにページ全体を撮って baseline と比べたレポート |
+| [`visual-regression.yml`](.github/workflows/visual-regression.yml)（PR） | `visual-regression/pr-<番号>/` | パターン × 画面（`site/src/pages.json`）× 画面幅（desktop 1280 / mobile 390）ごとにページ全体を撮って baseline と比べたレポート。パターンに依らないホームはパターンを付けずに 1 回だけ撮る |
 
 - VRT は差分があるとチェックが赤になる。レポートで確かめ、意図した変更なら PR に `visual-approved` ラベルを付けると通る
 - 手元で撮るときは `pnpm site:build && pnpm visual:capture -- --out visual-actual`（Chrome が要る。見つからないときは `CHROME_BIN` で指定）、比べるときは `pnpm visual:compare -- --expected <baseline> --actual visual-actual --out visual-report`
