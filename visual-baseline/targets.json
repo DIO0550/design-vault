@@ -1,0 +1,22 @@
+[
+  {
+    "id": "basic--desktop",
+    "title": "basic",
+    "name": "desktop"
+  },
+  {
+    "id": "basic--mobile",
+    "title": "basic",
+    "name": "mobile"
+  },
+  {
+    "id": "composer--desktop",
+    "title": "composer",
+    "name": "desktop"
+  },
+  {
+    "id": "composer--mobile",
+    "title": "composer",
+    "name": "mobile"
+  }
+]
