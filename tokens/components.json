@@ -1,0 +1,94 @@
+{
+  "$description": "部品の各部分に使うトークン。全パターン共通（トークン名がパターン間で揃っているため）。DESIGN.md の front matter の components はここから作る。部品ごとの細かな使い分けは references/components.md に文章で書く。プロパティは DESIGN.md 仕様の名前（backgroundColor / textColor / typography / rounded / padding）だけを使う。",
+  "button-primary": {
+    "backgroundColor": "{color.primary.default}",
+    "textColor": "{color.primary.on}",
+    "typography": "{typography.body}",
+    "rounded": "{radius.md}",
+    "padding": "{space.md}"
+  },
+  "button": {
+    "backgroundColor": "{color.bg.default}",
+    "textColor": "{color.text.default}",
+    "typography": "{typography.body}",
+    "rounded": "{radius.md}",
+    "padding": "{space.md}"
+  },
+  "button-hover": {
+    "backgroundColor": "{color.bg.hover}"
+  },
+  "button-danger": {
+    "backgroundColor": "{color.bg.default}",
+    "textColor": "{color.danger.default}"
+  },
+  "button-ghost": {
+    "textColor": "{color.text.muted}"
+  },
+  "button-disabled": {
+    "backgroundColor": "{color.bg.subtle}",
+    "textColor": "{color.text.disabled}"
+  },
+  "input": {
+    "backgroundColor": "{color.bg.subtle}",
+    "textColor": "{color.text.default}",
+    "typography": "{typography.body}",
+    "rounded": "{radius.md}",
+    "padding": "{space.sm}"
+  },
+  "input-label": {
+    "textColor": "{color.text.muted}",
+    "typography": "{typography.label}"
+  },
+  "input-placeholder": {
+    "textColor": "{color.text.placeholder}"
+  },
+  "input-error": {
+    "textColor": "{color.danger.default}",
+    "typography": "{typography.body-sm}"
+  },
+  "list-row": {
+    "textColor": "{color.text.default}",
+    "typography": "{typography.body}",
+    "rounded": "{radius.md}",
+    "padding": "{space.sm}"
+  },
+  "list-row-hover": {
+    "backgroundColor": "{color.bg.hover}"
+  },
+  "list-row-selected": {
+    "backgroundColor": "{color.primary.subtle}",
+    "textColor": "{color.text.default}"
+  },
+  "list-row-component": {
+    "textColor": "{color.component.default}"
+  },
+  "panel": {
+    "backgroundColor": "{color.bg.default}",
+    "textColor": "{color.text.default}",
+    "padding": "{space.md}"
+  },
+  "panel-title": {
+    "typography": "{typography.heading-md}"
+  },
+  "panel-section-title": {
+    "typography": "{typography.label}"
+  },
+  "badge": {
+    "backgroundColor": "{color.bg.hover}",
+    "textColor": "{color.text.muted}",
+    "typography": "{typography.body-sm}",
+    "rounded": "{radius.sm}",
+    "padding": "{space.xs}"
+  },
+  "badge-selected": {
+    "backgroundColor": "{color.primary.default}",
+    "textColor": "{color.primary.on}"
+  },
+  "badge-success": {
+    "backgroundColor": "{color.success.subtle}",
+    "textColor": "{color.success.default}"
+  },
+  "badge-danger": {
+    "textColor": "{color.danger.default}"
+  }
+}

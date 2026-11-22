@@ -47,6 +47,9 @@ jobs:
       - name: トークンの検証と生成
         run: pnpm build:tokens
 
+      - name: DESIGN.md が Google の DESIGN.md 仕様に沿っている
+        run: pnpm lint:design-md
+
       - name: 生成物がコミット済みのものと一致する
         run: |
           if [ -n "$(git status --porcelain -- dist plugins)" ]; then
