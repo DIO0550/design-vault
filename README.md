@@ -48,3 +48,16 @@ pnpm site:dev            # 見本ページを手元で開く（http://localhost:
 
 - トークンを変えたら `pnpm build:tokens` を実行し、生成物も一緒にコミットする（CI が差分を見る）
 - 依存の追加・更新は `pnpm-workspace.yaml` の `minimumReleaseAge`（7 日）に従う。Actions は `.github/workflows/actions.lock` で固定し、更新は `gh actions-lock` で行う
+
+## 見本ページのプレビューと視覚差分（VRT）
+
+design-composer の Storybook 向けの仕組みを見本ページ向けに移植したもの。どれも gh-pages ブランチに置くので、Pages の Source は **Deploy from a branch（`gh-pages` / root）** にする。
+
+| ワークフロー | gh-pages の置き場所 | 中身 |
+| --- | --- | --- |
+| [`pages.yml`](.github/workflows/pages.yml)（main） | ルート・`visual-baseline/` | 見本ページ本体と、VRT の baseline の撮り直し |
+| [`pr-preview.yml`](.github/workflows/pr-preview.yml)（PR） | `pr-preview/pr-<番号>/` | PR の見本ページ。URL を PR に固定コメントで貼る。PR を閉じると消す |
+| [`visual-regression.yml`](.github/workflows/visual-regression.yml)（PR） | `visual-regression/pr-<番号>/` | パターンごと・画面幅（desktop 1280 / mobile 390）ごとにページ全体を撮って baseline と比べたレポート |
+
+- VRT は差分があるとチェックが赤になる。レポートで確かめ、意図した変更なら PR に `visual-approved` ラベルを付けると通る
+- 手元で撮るときは `pnpm site:build && pnpm visual:capture -- --out visual-actual`（Chrome が要る。見つからないときは `CHROME_BIN` で指定）、比べるときは `pnpm visual:compare -- --expected <baseline> --actual visual-actual --out visual-report`

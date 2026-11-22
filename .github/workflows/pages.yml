@@ -1,3 +1,8 @@
+# main の見本ページを gh-pages ブランチのルートへ置き、VRT の baseline も同じ場所へ撮り直す。
+# PR のプレビュー（pr-preview/）と VRT のレポート（visual-regression/）も gh-pages に同居するため、
+# Pages の Source は「Deploy from a branch: gh-pages / (root)」にする（Actions の artifact デプロイでは
+# 1 つのツリーしか配信できず、PR ごとの置き場が作れない）。design-composer の
+# deploy-storybook-main.yml と同じ形。
 name: pages
 
 on:
@@ -6,17 +11,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
-# 同時に 2 つデプロイしない。進行中のデプロイは止めずに最後まで走らせる
+# gh-pages への push 競合はデプロイステップ内のリトライで吸収する
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
@@ -34,25 +39,69 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # ubuntu-24.04 ランナーには CJK フォントが無く、日本語が豆腐(□)で描画される。
+      # 豆腐は「差分なし」で baseline に焼き付いてしまうため、撮影前に必ず導入する。
+      - name: Install Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-cache -f
+          fc-list :lang=ja family
+
       - name: Build
         run: pnpm site:build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4.0.0
-        with:
-          path: site/dist
+      - name: Capture visual baseline
+        run: pnpm visual:capture -- --site-dir site/dist --out visual-baseline
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-24.04
-    timeout-minutes: 10
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4.0.5
+      - name: Deploy to gh-pages (root)
+        env:
+          OUTPUT_DIR: site/dist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          success=false
+          for attempt in 1 2 3 4 5; do
+            git worktree remove --force /tmp/gh-pages 2>/dev/null || true
+            git branch -D gh-pages 2>/dev/null || true
+
+            # gh-pages ブランチが無ければ空の orphan として作成
+            if git fetch origin +gh-pages:refs/remotes/origin/gh-pages 2>/dev/null; then
+              git worktree add --detach /tmp/gh-pages origin/gh-pages
+            else
+              git worktree add --detach /tmp/gh-pages
+              git -C /tmp/gh-pages checkout --orphan gh-pages
+              git -C /tmp/gh-pages rm -rf --quiet . || true
+            fi
+
+            cd /tmp/gh-pages
+
+            # pr-preview/ と visual-regression/ 以外を全削除してから main の成果物を配置
+            find . -mindepth 1 -maxdepth 1 ! -name pr-preview ! -name visual-regression ! -name .git -exec rm -rf {} +
+            cp -r "$GITHUB_WORKSPACE/$OUTPUT_DIR/." .
+            rm -rf visual-baseline
+            cp -r "$GITHUB_WORKSPACE/visual-baseline" visual-baseline
+            touch .nojekyll
+
+            git add -A
+            if ! git commit -m "Deploy main @ ${GITHUB_SHA::7}"; then
+              echo "no changes to deploy"
+              success=true
+              break
+            fi
+
+            # 他ワークフローの push と競合したら fetch からやり直す
+            if git push origin HEAD:gh-pages; then
+              success=true
+              break
+            fi
+            echo "push failed (attempt $attempt), retrying..."
+            cd "$GITHUB_WORKSPACE"
+            sleep $((attempt * 2))
+          done
+          [ "$success" = "true" ]
+
+          # gh-pages への push だけで Pages のビルドは走るので、ここでは何もしない。
+          # `POST /pages/builds` を足すと 1 コミットにつきデプロイが 2 本になり、同時に 1 つしか
+          # 走れない Pages でキューが詰まる（design-composer #109 で実際に起きた）。

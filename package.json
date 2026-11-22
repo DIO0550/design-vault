@@ -13,12 +13,15 @@
     "check:release-age": "node .github/scripts/check-lockfile-release-age.mjs",
     "site:dev": "vite --config site/vite.config.ts",
     "site:build": "vite build --config site/vite.config.ts",
-    "site:typecheck": "tsc -p site"
+    "site:typecheck": "tsc -p site",
+    "visual:capture": "node .github/scripts/visual-regression.mjs capture",
+    "visual:compare": "node .github/scripts/visual-regression.mjs compare"
   },
   "devDependencies": {
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
+    "odiff-bin": "4.5.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "style-dictionary": "^5.8.0",
