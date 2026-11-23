@@ -173,7 +173,7 @@ components:
 
 ## Typography
 
-- 業務画面の一覧性を重視して `typography.body` は 14px に抑えている
+- 業務画面の一覧性を重視して `typography.body` はコンパクトな設計にしている
 - 請求番号・金額・レコード ID など桁揃えや正確さが要る値には `typography.code` を使う
 
 ## Layout

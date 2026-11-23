@@ -15,7 +15,7 @@
 
 ## Shapes
 
-- ハードウェア計器に近いシャープな印象を保つため、角丸は `radius.sm`（2px）と `radius.md`（4px）を中心に使う
+- ハードウェア計器に近いシャープな印象を保つため、角丸は `radius.sm` と `radius.md` を中心に使う
 
 ## Do's and Don'ts
 

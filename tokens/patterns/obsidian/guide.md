@@ -9,7 +9,7 @@
 
 ## Typography
 
-- UI の既定は `typography.body`（14px）。テーブルやインスペクタは `typography.body-sm` を使う
+- UI の既定は `typography.body`。テーブルやインスペクタは `typography.body-sm` を使う
 - コマンド・ID・ログ・数値には `typography.code` を使い、視認性を揃える
 
 ## Layout

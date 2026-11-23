@@ -7,7 +7,7 @@
 
 ## Typography
 
-- 読みやすさと画面収まりのバランスを取った `typography.body`（15px・行間 1.7）を既定とする
+- 読みやすさと画面収まりのバランスを取った `typography.body` を既定とする
 
 ## Layout
 
@@ -15,7 +15,7 @@
 
 ## Shapes
 
-- 柔らかな印象になる `radius.md`（8px）と `radius.lg`（12px）を基本に使う
+- 柔らかな印象になる `radius.md` と `radius.lg` を基本に使う
 
 ## Do's and Don'ts
 

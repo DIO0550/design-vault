@@ -183,7 +183,7 @@ components:
 
 ## Shapes
 
-- 角丸は最小限（`radius.sm` 2px、`radius.md` 4px）に抑え、直線的で硬質な印象を保つ
+- 角丸は最小限（`radius.sm`、`radius.md`）に抑え、直線的で硬質な印象を保つ
 
 ## Components
 

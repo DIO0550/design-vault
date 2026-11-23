@@ -174,7 +174,7 @@ components:
 
 ## Typography
 
-- 本文は `typography.body`（16px・行間 1.8）を基本とし、1 行の長さが広がりすぎないよう配慮する
+- 本文は `typography.body` を基本とし、1 行の長さが広がりすぎないよう配慮する
 - 記事タイトルは `typography.heading-lg`、章見出しは `typography.heading-md` で明確なリズムを作る
 
 ## Layout
