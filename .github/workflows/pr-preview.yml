@@ -1,6 +1,5 @@
 # PR ごとの見本ページのプレビューを gh-pages/pr-preview/pr-{番号}/ へ配置し、PR が閉じたら消す。
 # (gh-pages ブランチが無ければ空の orphan として自動作成する)
-# design-composer の storybook-pr-preview.yml を見本ページ向けに移植したもの。
 name: PR Preview
 
 on:

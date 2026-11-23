@@ -61,7 +61,7 @@ pnpm site:dev            # 見本ページを手元で開く（http://localhost:
 
 ## 見本ページのプレビューと視覚差分（VRT）
 
-design-composer の Storybook 向けの仕組みを見本ページ向けに移植したもの。どれも gh-pages ブランチに置くので、Pages の Source は **Deploy from a branch（`gh-pages` / root）** にする。
+プレビューと VRT の成果物はどれも gh-pages ブランチに置くので、Pages の Source は **Deploy from a branch（`gh-pages` / root）** にする。
 
 | ワークフロー | gh-pages の置き場所 | 中身 |
 | --- | --- | --- |
