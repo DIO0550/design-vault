@@ -1,0 +1,48 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-bg-default: #141413; /** パネルとカードの地 */
+  --color-bg-subtle: #1d1c1a; /** 入力欄・小さな操作部品の地 */
+  --color-bg-canvas: #0c0c0b; /** 作業領域・ウィンドウの背景 */
+  --color-bg-hover: #262521; /** 行やボタンにポインタが乗ったときの地 */
+  --color-bg-inverse: #f3f1ea; /** ツールチップなど反転した面の地 */
+  --color-text-default: #f3f1ea; /** 本文・見出し・値 */
+  --color-text-muted: #a19c8e; /** ラベル・補足など副次的な文字 */
+  --color-text-placeholder: #7d796d; /** プレースホルダー・空状態の案内 */
+  --color-text-subtle: #706c61; /** アイコン・開閉の印・寸法表示など補助的な表示。読ませる文章には使わない */
+  --color-text-disabled: #4a4840; /** 無効な操作・ショートカット表記・区切り記号 */
+  --color-text-inverse: #141413; /** bg.inverse の上の文字 */
+  --color-border-default: #2e2c26; /** パネル境界・入力欄の枠 */
+  --color-border-subtle: #22211c; /** セクションの区切り線 */
+  --color-border-strong: #4a473e; /** チェックボックス・フレームなど輪郭を立たせたい枠 */
+  --color-primary-default: #f59e0b; /** 選択・アクティブ状態・フォーカスリング・主要な操作 */
+  --color-primary-subtle: #332610; /** 選択中の行の地 */
+  --color-primary-on: #141413; /** primary.default の上の文字やアイコン */
+  --color-component-default: #c084fc; /** コンポーネント・インスタンスを示す色（アイコン・名前・枠） */
+  --color-danger-default: #f87171; /** エラー・破壊的な操作 */
+  --color-danger-subtle: #361818; /** エラー表示の枠・地 */
+  --color-danger-on: #141413; /** danger.default の上の文字 */
+  --color-success-default: #4ade80; /** 成功・正常の表示 */
+  --color-success-subtle: #132d1c; /** 成功表示の地 */
+  --font-family-sans: 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** UI と本文（等幅主体） */
+  --font-family-mono: 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** ログ・数値・コマンド */
+  --typography-heading-lg: 700 22px/1.3 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** 画面タイトル */
+  --typography-heading-md: 600 15px/1.4 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** パネル・セクションの見出し */
+  --typography-label: 600 11px/1.4 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** フィールドラベル・メトリクス名 */
+  --typography-body-lg: 400 14px/1.55 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** 説明文・やや大きな表示 */
+  --typography-body: 400 13px/1.5 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** UI とログの既定 */
+  --typography-body-sm: 400 11px/1.45 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** ステータスバッジ・タイムスタンプ */
+  --typography-caption: 500 10px/1.35 'JetBrains Mono', 'IBM Plex Mono', 'Hiragino Sans', 'Noto Sans JP', monospace; /** 最小の注記・キーバインド表記 */
+  --typography-code: 400 13px/1.5 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** コマンド・ログ出力 */
+  --space-2xs: 2px; /** 密着させたい隙間 */
+  --space-xs: 4px; /** 要素内の最小の隙間 */
+  --space-sm: 8px; /** 関連する要素どうしの間 */
+  --space-md: 14px; /** パネル内余白・既定の間隔 */
+  --space-lg: 24px; /** セクションどうしの間 */
+  --radius-sm: 2px; /** バッジ・ステータス印 */
+  --radius-md: 4px; /** 入力欄・ボタン */
+  --radius-lg: 6px; /** パネル・ダイアログ */
+  --radius-full: 9999px; /** インジケータドット・ピル */
+}

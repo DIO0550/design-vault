@@ -1,12 +1,12 @@
 [
-  { "id": "home", "group": null, "title": "ホーム" },
-  { "id": "foundations/colors", "group": "基礎", "title": "色" },
-  { "id": "foundations/typography", "group": "基礎", "title": "文字" },
-  { "id": "foundations/spacing", "group": "基礎", "title": "余白" },
-  { "id": "foundations/radius", "group": "基礎", "title": "角丸" },
-  { "id": "components/button", "group": "コンポーネント", "title": "ボタン" },
-  { "id": "components/input", "group": "コンポーネント", "title": "入力欄" },
-  { "id": "components/list-row", "group": "コンポーネント", "title": "リストの行" },
-  { "id": "components/panel", "group": "コンポーネント", "title": "パネル" },
-  { "id": "components/badge", "group": "コンポーネント", "title": "バッジ" }
+  { "id": "home", "group": null, "title": "Overview" },
+  { "id": "foundations/colors", "group": "Foundations", "title": "Colors" },
+  { "id": "foundations/typography", "group": "Foundations", "title": "Typography" },
+  { "id": "foundations/spacing", "group": "Foundations", "title": "Spacing" },
+  { "id": "foundations/radius", "group": "Foundations", "title": "Radius" },
+  { "id": "components/button", "group": "Components", "title": "Button" },
+  { "id": "components/input", "group": "Components", "title": "Input" },
+  { "id": "components/list-row", "group": "Components", "title": "List Row" },
+  { "id": "components/panel", "group": "Components", "title": "Panel" },
+  { "id": "components/badge", "group": "Components", "title": "Badge" }
 ]
