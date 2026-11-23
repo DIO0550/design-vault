@@ -1,192 +1,732 @@
 [
   {
     "id": "home--desktop",
-    "title": "ホーム",
+    "title": "Overview",
     "name": "desktop"
   },
   {
     "id": "home--mobile",
-    "title": "ホーム",
+    "title": "Overview",
     "name": "mobile"
   },
   {
     "id": "basic--foundations__colors--desktop",
-    "title": "basic / 基礎 / 色",
+    "title": "basic / Foundations / Colors",
     "name": "desktop"
   },
   {
     "id": "basic--foundations__colors--mobile",
-    "title": "basic / 基礎 / 色",
+    "title": "basic / Foundations / Colors",
     "name": "mobile"
   },
   {
     "id": "basic--foundations__typography--desktop",
-    "title": "basic / 基礎 / 文字",
+    "title": "basic / Foundations / Typography",
     "name": "desktop"
   },
   {
     "id": "basic--foundations__typography--mobile",
-    "title": "basic / 基礎 / 文字",
+    "title": "basic / Foundations / Typography",
     "name": "mobile"
   },
   {
     "id": "basic--foundations__spacing--desktop",
-    "title": "basic / 基礎 / 余白",
+    "title": "basic / Foundations / Spacing",
     "name": "desktop"
   },
   {
     "id": "basic--foundations__spacing--mobile",
-    "title": "basic / 基礎 / 余白",
+    "title": "basic / Foundations / Spacing",
     "name": "mobile"
   },
   {
     "id": "basic--foundations__radius--desktop",
-    "title": "basic / 基礎 / 角丸",
+    "title": "basic / Foundations / Radius",
     "name": "desktop"
   },
   {
     "id": "basic--foundations__radius--mobile",
-    "title": "basic / 基礎 / 角丸",
+    "title": "basic / Foundations / Radius",
     "name": "mobile"
   },
   {
     "id": "basic--components__button--desktop",
-    "title": "basic / コンポーネント / ボタン",
+    "title": "basic / Components / Button",
     "name": "desktop"
   },
   {
     "id": "basic--components__button--mobile",
-    "title": "basic / コンポーネント / ボタン",
+    "title": "basic / Components / Button",
     "name": "mobile"
   },
   {
     "id": "basic--components__input--desktop",
-    "title": "basic / コンポーネント / 入力欄",
+    "title": "basic / Components / Input",
     "name": "desktop"
   },
   {
     "id": "basic--components__input--mobile",
-    "title": "basic / コンポーネント / 入力欄",
+    "title": "basic / Components / Input",
     "name": "mobile"
   },
   {
     "id": "basic--components__list-row--desktop",
-    "title": "basic / コンポーネント / リストの行",
+    "title": "basic / Components / List Row",
     "name": "desktop"
   },
   {
     "id": "basic--components__list-row--mobile",
-    "title": "basic / コンポーネント / リストの行",
+    "title": "basic / Components / List Row",
     "name": "mobile"
   },
   {
     "id": "basic--components__panel--desktop",
-    "title": "basic / コンポーネント / パネル",
+    "title": "basic / Components / Panel",
     "name": "desktop"
   },
   {
     "id": "basic--components__panel--mobile",
-    "title": "basic / コンポーネント / パネル",
+    "title": "basic / Components / Panel",
     "name": "mobile"
   },
   {
     "id": "basic--components__badge--desktop",
-    "title": "basic / コンポーネント / バッジ",
+    "title": "basic / Components / Badge",
     "name": "desktop"
   },
   {
     "id": "basic--components__badge--mobile",
-    "title": "basic / コンポーネント / バッジ",
+    "title": "basic / Components / Badge",
     "name": "mobile"
   },
   {
     "id": "composer--foundations__colors--desktop",
-    "title": "composer / 基礎 / 色",
+    "title": "composer / Foundations / Colors",
     "name": "desktop"
   },
   {
     "id": "composer--foundations__colors--mobile",
-    "title": "composer / 基礎 / 色",
+    "title": "composer / Foundations / Colors",
     "name": "mobile"
   },
   {
     "id": "composer--foundations__typography--desktop",
-    "title": "composer / 基礎 / 文字",
+    "title": "composer / Foundations / Typography",
     "name": "desktop"
   },
   {
     "id": "composer--foundations__typography--mobile",
-    "title": "composer / 基礎 / 文字",
+    "title": "composer / Foundations / Typography",
     "name": "mobile"
   },
   {
     "id": "composer--foundations__spacing--desktop",
-    "title": "composer / 基礎 / 余白",
+    "title": "composer / Foundations / Spacing",
     "name": "desktop"
   },
   {
     "id": "composer--foundations__spacing--mobile",
-    "title": "composer / 基礎 / 余白",
+    "title": "composer / Foundations / Spacing",
     "name": "mobile"
   },
   {
     "id": "composer--foundations__radius--desktop",
-    "title": "composer / 基礎 / 角丸",
+    "title": "composer / Foundations / Radius",
     "name": "desktop"
   },
   {
     "id": "composer--foundations__radius--mobile",
-    "title": "composer / 基礎 / 角丸",
+    "title": "composer / Foundations / Radius",
     "name": "mobile"
   },
   {
     "id": "composer--components__button--desktop",
-    "title": "composer / コンポーネント / ボタン",
+    "title": "composer / Components / Button",
     "name": "desktop"
   },
   {
     "id": "composer--components__button--mobile",
-    "title": "composer / コンポーネント / ボタン",
+    "title": "composer / Components / Button",
     "name": "mobile"
   },
   {
     "id": "composer--components__input--desktop",
-    "title": "composer / コンポーネント / 入力欄",
+    "title": "composer / Components / Input",
     "name": "desktop"
   },
   {
     "id": "composer--components__input--mobile",
-    "title": "composer / コンポーネント / 入力欄",
+    "title": "composer / Components / Input",
     "name": "mobile"
   },
   {
     "id": "composer--components__list-row--desktop",
-    "title": "composer / コンポーネント / リストの行",
+    "title": "composer / Components / List Row",
     "name": "desktop"
   },
   {
     "id": "composer--components__list-row--mobile",
-    "title": "composer / コンポーネント / リストの行",
+    "title": "composer / Components / List Row",
     "name": "mobile"
   },
   {
     "id": "composer--components__panel--desktop",
-    "title": "composer / コンポーネント / パネル",
+    "title": "composer / Components / Panel",
     "name": "desktop"
   },
   {
     "id": "composer--components__panel--mobile",
-    "title": "composer / コンポーネント / パネル",
+    "title": "composer / Components / Panel",
     "name": "mobile"
   },
   {
     "id": "composer--components__badge--desktop",
-    "title": "composer / コンポーネント / バッジ",
+    "title": "composer / Components / Badge",
     "name": "desktop"
   },
   {
     "id": "composer--components__badge--mobile",
-    "title": "composer / コンポーネント / バッジ",
+    "title": "composer / Components / Badge",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--foundations__colors--desktop",
+    "title": "editorial / Foundations / Colors",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--foundations__colors--mobile",
+    "title": "editorial / Foundations / Colors",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--foundations__typography--desktop",
+    "title": "editorial / Foundations / Typography",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--foundations__typography--mobile",
+    "title": "editorial / Foundations / Typography",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--foundations__spacing--desktop",
+    "title": "editorial / Foundations / Spacing",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--foundations__spacing--mobile",
+    "title": "editorial / Foundations / Spacing",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--foundations__radius--desktop",
+    "title": "editorial / Foundations / Radius",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--foundations__radius--mobile",
+    "title": "editorial / Foundations / Radius",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--components__button--desktop",
+    "title": "editorial / Components / Button",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--components__button--mobile",
+    "title": "editorial / Components / Button",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--components__input--desktop",
+    "title": "editorial / Components / Input",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--components__input--mobile",
+    "title": "editorial / Components / Input",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--components__list-row--desktop",
+    "title": "editorial / Components / List Row",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--components__list-row--mobile",
+    "title": "editorial / Components / List Row",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--components__panel--desktop",
+    "title": "editorial / Components / Panel",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--components__panel--mobile",
+    "title": "editorial / Components / Panel",
+    "name": "mobile"
+  },
+  {
+    "id": "editorial--components__badge--desktop",
+    "title": "editorial / Components / Badge",
+    "name": "desktop"
+  },
+  {
+    "id": "editorial--components__badge--mobile",
+    "title": "editorial / Components / Badge",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--foundations__colors--desktop",
+    "title": "forest / Foundations / Colors",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--foundations__colors--mobile",
+    "title": "forest / Foundations / Colors",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--foundations__typography--desktop",
+    "title": "forest / Foundations / Typography",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--foundations__typography--mobile",
+    "title": "forest / Foundations / Typography",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--foundations__spacing--desktop",
+    "title": "forest / Foundations / Spacing",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--foundations__spacing--mobile",
+    "title": "forest / Foundations / Spacing",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--foundations__radius--desktop",
+    "title": "forest / Foundations / Radius",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--foundations__radius--mobile",
+    "title": "forest / Foundations / Radius",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--components__button--desktop",
+    "title": "forest / Components / Button",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--components__button--mobile",
+    "title": "forest / Components / Button",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--components__input--desktop",
+    "title": "forest / Components / Input",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--components__input--mobile",
+    "title": "forest / Components / Input",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--components__list-row--desktop",
+    "title": "forest / Components / List Row",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--components__list-row--mobile",
+    "title": "forest / Components / List Row",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--components__panel--desktop",
+    "title": "forest / Components / Panel",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--components__panel--mobile",
+    "title": "forest / Components / Panel",
+    "name": "mobile"
+  },
+  {
+    "id": "forest--components__badge--desktop",
+    "title": "forest / Components / Badge",
+    "name": "desktop"
+  },
+  {
+    "id": "forest--components__badge--mobile",
+    "title": "forest / Components / Badge",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--foundations__colors--desktop",
+    "title": "obsidian / Foundations / Colors",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--foundations__colors--mobile",
+    "title": "obsidian / Foundations / Colors",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--foundations__typography--desktop",
+    "title": "obsidian / Foundations / Typography",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--foundations__typography--mobile",
+    "title": "obsidian / Foundations / Typography",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--foundations__spacing--desktop",
+    "title": "obsidian / Foundations / Spacing",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--foundations__spacing--mobile",
+    "title": "obsidian / Foundations / Spacing",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--foundations__radius--desktop",
+    "title": "obsidian / Foundations / Radius",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--foundations__radius--mobile",
+    "title": "obsidian / Foundations / Radius",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--components__button--desktop",
+    "title": "obsidian / Components / Button",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--components__button--mobile",
+    "title": "obsidian / Components / Button",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--components__input--desktop",
+    "title": "obsidian / Components / Input",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--components__input--mobile",
+    "title": "obsidian / Components / Input",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--components__list-row--desktop",
+    "title": "obsidian / Components / List Row",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--components__list-row--mobile",
+    "title": "obsidian / Components / List Row",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--components__panel--desktop",
+    "title": "obsidian / Components / Panel",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--components__panel--mobile",
+    "title": "obsidian / Components / Panel",
+    "name": "mobile"
+  },
+  {
+    "id": "obsidian--components__badge--desktop",
+    "title": "obsidian / Components / Badge",
+    "name": "desktop"
+  },
+  {
+    "id": "obsidian--components__badge--mobile",
+    "title": "obsidian / Components / Badge",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--foundations__colors--desktop",
+    "title": "saas / Foundations / Colors",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--foundations__colors--mobile",
+    "title": "saas / Foundations / Colors",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--foundations__typography--desktop",
+    "title": "saas / Foundations / Typography",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--foundations__typography--mobile",
+    "title": "saas / Foundations / Typography",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--foundations__spacing--desktop",
+    "title": "saas / Foundations / Spacing",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--foundations__spacing--mobile",
+    "title": "saas / Foundations / Spacing",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--foundations__radius--desktop",
+    "title": "saas / Foundations / Radius",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--foundations__radius--mobile",
+    "title": "saas / Foundations / Radius",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--components__button--desktop",
+    "title": "saas / Components / Button",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--components__button--mobile",
+    "title": "saas / Components / Button",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--components__input--desktop",
+    "title": "saas / Components / Input",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--components__input--mobile",
+    "title": "saas / Components / Input",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--components__list-row--desktop",
+    "title": "saas / Components / List Row",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--components__list-row--mobile",
+    "title": "saas / Components / List Row",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--components__panel--desktop",
+    "title": "saas / Components / Panel",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--components__panel--mobile",
+    "title": "saas / Components / Panel",
+    "name": "mobile"
+  },
+  {
+    "id": "saas--components__badge--desktop",
+    "title": "saas / Components / Badge",
+    "name": "desktop"
+  },
+  {
+    "id": "saas--components__badge--mobile",
+    "title": "saas / Components / Badge",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--foundations__colors--desktop",
+    "title": "swiss / Foundations / Colors",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--foundations__colors--mobile",
+    "title": "swiss / Foundations / Colors",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--foundations__typography--desktop",
+    "title": "swiss / Foundations / Typography",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--foundations__typography--mobile",
+    "title": "swiss / Foundations / Typography",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--foundations__spacing--desktop",
+    "title": "swiss / Foundations / Spacing",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--foundations__spacing--mobile",
+    "title": "swiss / Foundations / Spacing",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--foundations__radius--desktop",
+    "title": "swiss / Foundations / Radius",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--foundations__radius--mobile",
+    "title": "swiss / Foundations / Radius",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--components__button--desktop",
+    "title": "swiss / Components / Button",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--components__button--mobile",
+    "title": "swiss / Components / Button",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--components__input--desktop",
+    "title": "swiss / Components / Input",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--components__input--mobile",
+    "title": "swiss / Components / Input",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--components__list-row--desktop",
+    "title": "swiss / Components / List Row",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--components__list-row--mobile",
+    "title": "swiss / Components / List Row",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--components__panel--desktop",
+    "title": "swiss / Components / Panel",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--components__panel--mobile",
+    "title": "swiss / Components / Panel",
+    "name": "mobile"
+  },
+  {
+    "id": "swiss--components__badge--desktop",
+    "title": "swiss / Components / Badge",
+    "name": "desktop"
+  },
+  {
+    "id": "swiss--components__badge--mobile",
+    "title": "swiss / Components / Badge",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--foundations__colors--desktop",
+    "title": "terminal / Foundations / Colors",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--foundations__colors--mobile",
+    "title": "terminal / Foundations / Colors",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--foundations__typography--desktop",
+    "title": "terminal / Foundations / Typography",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--foundations__typography--mobile",
+    "title": "terminal / Foundations / Typography",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--foundations__spacing--desktop",
+    "title": "terminal / Foundations / Spacing",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--foundations__spacing--mobile",
+    "title": "terminal / Foundations / Spacing",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--foundations__radius--desktop",
+    "title": "terminal / Foundations / Radius",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--foundations__radius--mobile",
+    "title": "terminal / Foundations / Radius",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--components__button--desktop",
+    "title": "terminal / Components / Button",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--components__button--mobile",
+    "title": "terminal / Components / Button",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--components__input--desktop",
+    "title": "terminal / Components / Input",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--components__input--mobile",
+    "title": "terminal / Components / Input",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--components__list-row--desktop",
+    "title": "terminal / Components / List Row",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--components__list-row--mobile",
+    "title": "terminal / Components / List Row",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--components__panel--desktop",
+    "title": "terminal / Components / Panel",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--components__panel--mobile",
+    "title": "terminal / Components / Panel",
+    "name": "mobile"
+  },
+  {
+    "id": "terminal--components__badge--desktop",
+    "title": "terminal / Components / Badge",
+    "name": "desktop"
+  },
+  {
+    "id": "terminal--components__badge--mobile",
+    "title": "terminal / Components / Badge",
     "name": "mobile"
   }
 ]
