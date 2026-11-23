@@ -1,7 +1,7 @@
 ---
 version: "alpha"
 name: "composer"
-description: "design-composer の UI 案（docs/Design Composer.html）から作ったパターン。白いパネルとグレーの段階で組む、密度の高いデスクトップツールの外枠向け。文字は IBM Plex Sans / Mono で、typography.body を既定にする。"
+description: "白いパネルとグレーの段階で組む、密度の高いデスクトップツールの外枠向けパターン。文字は IBM Plex Sans / Mono で、typography.body を既定にする。"
 colors:
   bg:
     default: "#ffffff"
@@ -164,7 +164,7 @@ components:
 
 ## Overview
 
-design-composer の UI 案（`docs/Design Composer.html`）から作ったパターン。白いパネルとグレーの段階で組む、密度の高いデスクトップツールの外枠向け。文字は IBM Plex Sans / Mono で、`typography.body` を既定にする。
+白いパネルとグレーの段階で組む、密度の高いデスクトップツールの外枠向けパターン。文字は IBM Plex Sans / Mono で、`typography.body` を既定にする。
 
 ## Colors
 

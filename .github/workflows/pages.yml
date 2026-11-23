@@ -1,8 +1,7 @@
 # main の見本ページを gh-pages ブランチのルートへ置き、VRT の baseline も同じ場所へ撮り直す。
 # PR のプレビュー（pr-preview/）と VRT のレポート（visual-regression/）も gh-pages に同居するため、
 # Pages の Source は「Deploy from a branch: gh-pages / (root)」にする（Actions の artifact デプロイでは
-# 1 つのツリーしか配信できず、PR ごとの置き場が作れない）。design-composer の
-# deploy-storybook-main.yml と同じ形。
+# 1 つのツリーしか配信できず、PR ごとの置き場が作れない）。
 name: pages
 
 on:
@@ -104,4 +103,4 @@ jobs:
 
           # gh-pages への push だけで Pages のビルドは走るので、ここでは何もしない。
           # `POST /pages/builds` を足すと 1 コミットにつきデプロイが 2 本になり、同時に 1 つしか
-          # 走れない Pages でキューが詰まる（design-composer #109 で実際に起きた）。
+          # 走れない Pages でキューが詰まる。

@@ -1,7 +1,6 @@
 # 見本ページ（site/）の視覚差分（VRT）。PR の見本ページをパターンごと・画面幅ごとに撮り、
 # main で撮った baseline（gh-pages/visual-baseline/。pages.yml が撮り直す）と比べる。
 # レポートは gh-pages/visual-regression/pr-{番号}/ に置き、PR に固定コメントで貼る。
-# design-composer の storybook-visual-regression.yml を移植したもの。
 name: Visual Regression
 
 on:
@@ -18,7 +17,7 @@ permissions:
   contents: write
   pull-requests: write
   issues: write
-  # 取り残されたリビジョンの再デプロイ要求にだけ使う(design-composer #109)
+  # 取り残されたリビジョンの再デプロイ要求にだけ使う
   pages: write
 
 concurrency:
@@ -218,14 +217,13 @@ jobs:
           # gh-pages への push だけで Pages のビルドは走る。ここで
           # `POST /pages/builds` を足すと 1 コミットにつきデプロイが 2 本になり、
           # 同時に 1 つしか走れない Pages でキューが詰まって、片方が
-          # `deployment_queued` のまま 10 分でタイムアウトする(design-composer #109)。
+          # `deployment_queued` のまま 10 分でタイムアウトする。
           #
           # 公開の確認は push の有無で分岐させない。再実行などで push すべき差分が
           # 無かったときも、レポートが実際に配信されていることを確かめる
           # (見えていないのに緑になる状態を作らない)。
           #
-          # 待ち時間を 10 分取るのは、キューに入ったデプロイが実測で 10 分 42 秒
-          # かかったため。5 分では配信されているのに失敗と判定してしまう(design-composer #109)。
+          # 待ち時間を 10 分取るのは、キューに入ったデプロイが 5 分を超えることがあるため。
           wait_for_publication() {
             for attempt in $(seq 1 120); do
               if curl --fail --silent --show-error "$PUBLIC_SUMMARY" -o /tmp/published-visual-summary.json \
@@ -245,9 +243,8 @@ jobs:
 
             # 通常は push が起こしたビルドで配信される。
             # ただし短い間隔で 2 回 push すると、後の push のツリーが
-            # デプロイされないまま終わることがある(design-composer #110 で実際に発生。
-            # プレビューの push と VRT の push が 1 分差で並び、
-            # デプロイはプレビュー側のツリーだけを配信して完了した)。
+            # デプロイされないまま終わることがある(プレビューの push と VRT の push が
+            # 近接して並び、片方のツリーだけを配信して完了するケース)。
             # その取り残しからは自力で復帰できないので、配信されていないときに
             # 限りビルドを 1 本だけ要求する。push 済みの分と二重にはならない。
             if ! wait_for_publication; then

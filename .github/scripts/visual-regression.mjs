@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-// 見本ページ（site/）の視覚差分（VRT）。design-composer の Storybook 用 VRT
-// （.github/scripts/storybook-visual-regression.mjs）を移植し、撮影対象を Storybook の
-// ストーリーから「見本ページのパターン × 画面 × 画面幅」へ置き換えたもの。比較とレポートは同じ。
+// 見本ページ（site/）の視覚差分（VRT）。見本ページのパターン × 画面 × 画面幅ごとに撮影し、比較レポートを出力する。
 //
 //   capture: ビルド済みの見本ページを配信し、パターンごと・画面（site/src/pages.json）ごと・画面幅ごとにページ全体を撮る
 //   compare: 撮影結果を baseline と比べ、レポート（index.html / summary.json）を書き出す
