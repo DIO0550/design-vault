@@ -6,20 +6,20 @@ workflows:
     '.github/workflows/ci.yml':
         - 'actions/checkout@v6.0.2'
         - 'actions/setup-node@v6.3.0'
-        - 'pnpm/action-setup@v5.0.0'
+        - 'pnpm/action-setup@v6.1.1'
     '.github/workflows/pages.yml':
         - 'actions/checkout@v6.0.2'
         - 'actions/setup-node@v6.3.0'
-        - 'pnpm/action-setup@v5.0.0'
+        - 'pnpm/action-setup@v6.1.1'
     '.github/workflows/pr-preview.yml':
         - 'actions/checkout@v6.0.2'
         - 'actions/setup-node@v6.3.0'
-        - 'pnpm/action-setup@v5.0.0'
+        - 'pnpm/action-setup@v6.1.1'
     '.github/workflows/visual-regression.yml':
         - 'actions/checkout@v6.0.2'
         - 'actions/setup-node@v6.3.0'
         - 'actions/upload-artifact@v7.0.1'
-        - 'pnpm/action-setup@v5.0.0'
+        - 'pnpm/action-setup@v6.1.1'
 dependencies:
     'actions/checkout@v6.0.2':
         ref: 'v6.0.2'
@@ -36,8 +36,8 @@ dependencies:
         commit: 'sha1-043fb46d1a93c77aae656e7c1c64a875d1fc6a0a'
         owner_id: 44036562
         repo_id: 192625955
-    'pnpm/action-setup@v5.0.0':
-        ref: 'v5.0.0'
-        commit: 'sha1-fc06bc1257f339d1d5d8b3a19a8cae5388b55320'
+    'pnpm/action-setup@v6.1.1':
+        ref: 'v6.1.1'
+        commit: 'sha1-73e46992e05b19abd31f2f3c20e0e7370d762115'
         owner_id: 21320719
         repo_id: 262289747
