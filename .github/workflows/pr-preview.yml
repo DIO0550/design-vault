@@ -116,7 +116,7 @@ jobs:
           URL="https://${OWNER}.github.io/${REPO_NAME}/pr-preview/pr-${PR_NUMBER}/"
 
           BODY_FILE=preview-comment.md
-          echo "📖 見本ページのプレビュー: ${URL}（パターンは \`?pattern=<名前>\` で切り替え）" > "$BODY_FILE"
+          echo "📖 見本ページのプレビュー: [${URL}](${URL}) （パターンは \`?pattern=<名前>\` で切り替え）" > "$BODY_FILE"
 
           bash .github/scripts/upsert-sticky-comment.sh \
             --marker '<!-- site-preview -->' \
