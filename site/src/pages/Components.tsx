@@ -1,7 +1,9 @@
 // コンポーネントの見本。見た目は components.css（トークンだけで書いた dv-* クラス）が決め、
 // どの部分にどのトークンを使うかは references/components.md と揃える。
-import type { ReactElement, ReactNode } from "react";
+import { type ReactElement, type ReactNode, useState } from "react";
 import type { Pattern } from "../tokens";
+
+type SpecimenSurface = "canvas" | "default";
 
 /** 見本の枠。枠の中だけを選んだパターンの変数で描き、ページの外枠とは切り分ける */
 const Specimen = ({
@@ -12,24 +14,59 @@ const Specimen = ({
   pattern: Pattern;
   title: string;
   children: ReactNode;
-}): ReactElement => (
-  <section className="specimen">
-    <h3 className="subheading">{title}</h3>
-    <div className="specimen-frame">
-      <div className="specimen-bar">
-        <span>{pattern.name} で表示中</span>
-        <code>dist/{pattern.name}/tokens.css</code>
+}): ReactElement => {
+  const [surface, setSurface] = useState<SpecimenSurface>("canvas");
+  return (
+    <section className="specimen">
+      <h2 className="subheading">{title}</h2>
+      <div className="specimen-frame">
+        <div className="specimen-bar">
+          <div className="specimen-bar-left">
+            <span
+              className="pattern-accent-dot"
+              data-design-pattern={pattern.name}
+              style={{ background: "var(--color-primary-default)" }}
+              aria-hidden="true"
+            />
+            <span className="specimen-pattern-name">{pattern.name}</span>
+            <code className="specimen-file">dist/{pattern.name}/tokens.css</code>
+          </div>
+          <div className="segmented segmented--sm" role="group" aria-label="見本の背景">
+            <button
+              type="button"
+              className="segmented-btn"
+              aria-pressed={surface === "canvas"}
+              onClick={() => setSurface("canvas")}
+            >
+              bg.canvas
+            </button>
+            <button
+              type="button"
+              className="segmented-btn"
+              aria-pressed={surface === "default"}
+              onClick={() => setSurface("default")}
+            >
+              bg.default
+            </button>
+          </div>
+        </div>
+        <div
+          className="specimen-body"
+          data-design-pattern={pattern.name}
+          style={{
+            background: surface === "canvas" ? "var(--color-bg-canvas)" : "var(--color-bg-default)",
+          }}
+        >
+          {children}
+        </div>
       </div>
-      <div className="specimen-body" data-design-pattern={pattern.name}>
-        {children}
-      </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const TokenList = ({ items }: { items: readonly (readonly [string, string])[] }): ReactElement => (
   <section className="specimen">
-    <h3 className="subheading">使うトークン</h3>
+    <h2 className="subheading">使うトークン</h2>
     <dl className="token-list">
       {items.map(([part, tokens]) => (
         <div key={part} className="token-list-row">
@@ -44,7 +81,7 @@ const TokenList = ({ items }: { items: readonly (readonly [string, string])[] })
 );
 
 export const ButtonPage = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <>
+  <div className="component-stack">
     <Specimen pattern={pattern} title="種類">
       <button type="button" className="dv-button dv-button--primary">
         保存
@@ -79,11 +116,11 @@ export const ButtonPage = ({ pattern }: { pattern: Pattern }): ReactElement => (
         ["フォーカス", "color.primary.default の outline"],
       ]}
     />
-  </>
+  </div>
 );
 
 export const InputPage = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <>
+  <div className="component-stack">
     <Specimen pattern={pattern} title="状態">
       <label className="dv-field">
         <span className="dv-field__label">名前</span>
@@ -113,11 +150,11 @@ export const InputPage = ({ pattern }: { pattern: Pattern }): ReactElement => (
         ["無効", "color.text.disabled"],
       ]}
     />
-  </>
+  </div>
 );
 
 export const ListRowPage = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <>
+  <div className="component-stack">
     <Specimen pattern={pattern} title="状態">
       <ul className="dv-list">
         <li className="dv-row">
@@ -151,11 +188,11 @@ export const ListRowPage = ({ pattern }: { pattern: Pattern }): ReactElement => 
         ["字下げ・間隔", "space.md / space.sm / radius.md"],
       ]}
     />
-  </>
+  </div>
 );
 
 export const PanelPage = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <>
+  <div className="component-stack">
     <Specimen pattern={pattern} title="構成">
       <div className="dv-panel">
         <div className="dv-panel__header">Box</div>
@@ -188,11 +225,11 @@ export const PanelPage = ({ pattern }: { pattern: Pattern }): ReactElement => (
         ["項目名と値", "color.text.muted / color.text.default / typography.body"],
       ]}
     />
-  </>
+  </div>
 );
 
 export const BadgePage = ({ pattern }: { pattern: Pattern }): ReactElement => (
-  <>
+  <div className="component-stack">
     <Specimen pattern={pattern} title="種類">
       <span className="dv-badge">default</span>
       <span className="dv-badge dv-badge--primary">login-form</span>
@@ -210,5 +247,5 @@ export const BadgePage = ({ pattern }: { pattern: Pattern }): ReactElement => (
         ["エラー", "color.danger.subtle の枠 / color.danger.default"],
       ]}
     />
-  </>
+  </div>
 );

@@ -1,0 +1,48 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+[data-design-pattern="editorial"] {
+  --color-bg-default: #fffdf9; /** パネルとカードの地 */
+  --color-bg-subtle: #f6f2ea; /** 入力欄・小さな操作部品の地 */
+  --color-bg-canvas: #efeae0; /** 作業領域・ウィンドウの背景 */
+  --color-bg-hover: #ebe5d9; /** 行やボタンにポインタが乗ったときの地 */
+  --color-bg-inverse: #241f1a; /** ツールチップなど反転した面の地 */
+  --color-text-default: #241f1a; /** 本文・見出し・値 */
+  --color-text-muted: #62584e; /** ラベル・補足など副次的な文字 */
+  --color-text-placeholder: #7d7267; /** プレースホルダー・空状態の案内 */
+  --color-text-subtle: #968a7e; /** アイコン・開閉の印・寸法表示など補助的な表示。読ませる文章には使わない */
+  --color-text-disabled: #bfb5a8; /** 無効な操作・ショートカット表記・区切り記号 */
+  --color-text-inverse: #fffdf9; /** bg.inverse の上の文字 */
+  --color-border-default: #dfd8cc; /** パネル境界・入力欄の枠 */
+  --color-border-subtle: #ede8de; /** セクションの区切り線 */
+  --color-border-strong: #bfb5a6; /** チェックボックス・フレームなど輪郭を立たせたい枠 */
+  --color-primary-default: #9a3412; /** 選択・アクティブ状態・フォーカスリング・主要な操作 */
+  --color-primary-subtle: #fef1e6; /** 選択中の行の地 */
+  --color-primary-on: #ffffff; /** primary.default の上の文字やアイコン */
+  --color-component-default: #6d4c9e; /** コンポーネント・インスタンスを示す色（アイコン・名前・枠） */
+  --color-danger-default: #b82e2e; /** エラー・破壊的な操作 */
+  --color-danger-subtle: #fbeaea; /** エラー表示の枠・地 */
+  --color-danger-on: #ffffff; /** danger.default の上の文字 */
+  --color-success-default: #2b6e44; /** 成功・正常の表示 */
+  --color-success-subtle: #e8f3ec; /** 成功表示の地 */
+  --font-family-sans: Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** UI と本文 */
+  --font-family-mono: 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** コード・数値・トークン名 */
+  --typography-heading-lg: 700 30px/1.25 Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** 記事・ページの見出し（1 画面に 1 つ） */
+  --typography-heading-md: 700 21px/1.4 Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** 章・セクションの見出し */
+  --typography-label: 600 13px/1.5 Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** カテゴリ・フォームラベル */
+  --typography-body-lg: 400 18px/1.8 Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** リード文・導入段落 */
+  --typography-body: 400 16px/1.8 Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** 長文を読みやすくする本文の既定 */
+  --typography-body-sm: 400 14px/1.65 Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** 注釈・サイド情報・表 */
+  --typography-caption: 400 12px/1.5 Inter, 'Hiragino Sans', 'Noto Sans JP', system-ui, sans-serif; /** 図表キャプション・日付 */
+  --typography-code: 400 14px/1.6 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** コードスニペット・トークン名 */
+  --space-2xs: 2px; /** 密着させたい隙間 */
+  --space-xs: 6px; /** 要素内の小さな隙間 */
+  --space-sm: 12px; /** 段落や関連する要素どうしの間 */
+  --space-md: 20px; /** カードの内側の余白・既定の間隔 */
+  --space-lg: 40px; /** 章・セクションどうしの広い余白 */
+  --radius-sm: 2px; /** タグなど小さな要素 */
+  --radius-md: 6px; /** 入力欄・ボタン */
+  --radius-lg: 10px; /** カード・引用枠・ダイアログ */
+  --radius-full: 9999px; /** アバター・ピル */
+}
