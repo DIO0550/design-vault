@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v7.0.1
         with:
           # lock の公開日検査が「lock を最後に変えたコミット」の日時を引くため、履歴をすべて取る
           fetch-depth: 0
