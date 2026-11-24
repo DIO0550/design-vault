@@ -1,6 +1,6 @@
 ---
 version: "alpha"
-name: "board-dark"
+name: "midnight"
 description: "カンバンボード・ツリー・タイムラインを備えたタスク管理や IDE シェル向けのディープネイビー＆ブライトインディゴ調ダークテーマ。深い紺の作業領域に段階的な暗色パネルを載せ、明度を上げたアクセントと状態色で視認性を保つ。"
 colors:
   bg:
@@ -158,9 +158,9 @@ components:
     textColor: "{colors.danger.default}"
 ---
 
-<!-- 生成物。tokens/patterns/board-dark/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
+<!-- 生成物。tokens/patterns/midnight/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
 
-# board-dark
+# midnight
 
 ## Overview
 
@@ -175,12 +175,12 @@ components:
 
 ## Typography
 
-- `board` パターンと同一のタイポグラフィスケールを維持し、テーマ切り替え時にカード高さや文字折り返しが崩れないようにする
+- `slate` パターンと同一のタイポグラフィスケールを維持し、テーマ切り替え時にカード高さや文字折り返しが崩れないようにする
 - UI の既定は `typography.body`、タスク ID やファイルパスには `typography.code` を使う
 
 ## Layout
 
-- `board` と同じく `space.md` のカード余白と `space.sm` の要素間隔を基本にし、一覧性を損なわない密度を保つ
+- `slate` と同じく `space.md` のカード余白と `space.sm` の要素間隔を基本にし、一覧性を損なわない密度を保つ
 
 ## Shapes
 

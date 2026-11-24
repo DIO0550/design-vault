@@ -1,6 +1,6 @@
 ---
 version: "alpha"
-name: "viewer-dark"
+name: "twilight"
 description: "仕様書・ドキュメント閲覧や差分レビュー向けのクールスレート＆ペリウィンクル調ダークテーマ。彩度を抑えた青みのある暗色面と柔らかなパステル調の状態色で、夜間の長時間レビューでも目の負担を軽減する。"
 colors:
   bg:
@@ -158,9 +158,9 @@ components:
     textColor: "{colors.danger.default}"
 ---
 
-<!-- 生成物。tokens/patterns/viewer-dark/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
+<!-- 生成物。tokens/patterns/twilight/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
 
-# viewer-dark
+# twilight
 
 ## Overview
 
@@ -176,7 +176,7 @@ components:
 
 ## Typography
 
-- `viewer` パターンと同一のタイポグラフィスケールを保ち、ライト・ダーク切り替え時にレイアウトがずれないようにする
+- `stone` パターンと同一のタイポグラフィスケールを保ち、ライト・ダーク切り替え時にレイアウトがずれないようにする
 - UI の既定は `typography.body`、長文のドキュメント本文は `typography.body-lg`、コードや差分は `typography.code` を使う
 
 ## Layout

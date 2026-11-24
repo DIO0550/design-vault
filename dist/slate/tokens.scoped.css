@@ -2,7 +2,7 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-[data-design-pattern="board"] {
+[data-design-pattern="slate"] {
   --color-bg-default: #ffffff; /** カード・パネル・モーダルの地 */
   --color-bg-subtle: #f6f7fa; /** サイドバー・入力欄・補助ボタンの地 */
   --color-bg-canvas: #f3f5f8; /** ボード作業領域・ウィンドウの背景 */

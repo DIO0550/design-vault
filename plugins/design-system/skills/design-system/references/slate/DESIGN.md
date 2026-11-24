@@ -1,6 +1,6 @@
 ---
 version: "alpha"
-name: "board"
+name: "slate"
 description: "カンバンボード・ツリー・タイムラインを備えたタスク管理や IDE シェル向けのクールスレート＆インディゴ調ライトテーマ。淡い寒色の作業領域に白のカードを整理し、彩度を抑えたインディゴのアクセントで一覧性と集中力を両立する。"
 colors:
   bg:
@@ -158,9 +158,9 @@ components:
     textColor: "{colors.danger.default}"
 ---
 
-<!-- 生成物。tokens/patterns/board/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
+<!-- 生成物。tokens/patterns/slate/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
 
-# board
+# slate
 
 ## Overview
 

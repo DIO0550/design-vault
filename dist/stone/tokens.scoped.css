@@ -2,7 +2,7 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-[data-design-pattern="viewer"] {
+[data-design-pattern="stone"] {
   --color-bg-default: #ffffff; /** 本文閲覧ペイン・パネル・カードの地 */
   --color-bg-subtle: #fafaf9; /** サイドバー・入力欄・補助コントロールの地 */
   --color-bg-canvas: #f3f2ef; /** 作業領域・ウィンドウの背景 */

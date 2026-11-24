@@ -1,6 +1,6 @@
 ---
 version: "alpha"
-name: "viewer"
+name: "stone"
 description: "仕様書・ドキュメント閲覧や差分レビュー向けの温かみあるストーン調ライトテーマ。無彩色の紙面に近い落ち着いた背景に鮮やかなブルーのアクセントを合わせ、複数ペインをまたいだ長時間の閲覧とレビューを快適にする。"
 colors:
   bg:
@@ -158,9 +158,9 @@ components:
     textColor: "{colors.danger.default}"
 ---
 
-<!-- 生成物。tokens/patterns/viewer/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
+<!-- 生成物。tokens/patterns/stone/ の tokens.json と guide.md、tokens/components.json を直して pnpm build:tokens で作り直す。手で書き換えない。 -->
 
-# viewer
+# stone
 
 ## Overview
 

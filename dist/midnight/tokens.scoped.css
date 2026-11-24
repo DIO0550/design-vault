@@ -2,7 +2,7 @@
  * Do not edit directly, this file was auto-generated.
  */
 
-[data-design-pattern="board-dark"] {
+[data-design-pattern="midnight"] {
   --color-bg-default: #151b23; /** カード・パネル・モーダルの地 */
   --color-bg-subtle: #1c232e; /** 入力欄・補助ボタン・浮き上がったコントロールの地 */
   --color-bg-canvas: #0d1117; /** ボード作業領域・ウィンドウの背景 */

@@ -10,7 +10,7 @@
 
 ## Typography
 
-- `viewer` パターンと同一のタイポグラフィスケールを保ち、ライト・ダーク切り替え時にレイアウトがずれないようにする
+- `stone` パターンと同一のタイポグラフィスケールを保ち、ライト・ダーク切り替え時にレイアウトがずれないようにする
 - UI の既定は `typography.body`、長文のドキュメント本文は `typography.body-lg`、コードや差分は `typography.code` を使う
 
 ## Layout
