@@ -1,0 +1,48 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+[data-design-pattern="viewer"] {
+  --color-bg-default: #ffffff; /** 本文閲覧ペイン・パネル・カードの地 */
+  --color-bg-subtle: #fafaf9; /** サイドバー・入力欄・補助コントロールの地 */
+  --color-bg-canvas: #f3f2ef; /** 作業領域・ウィンドウの背景 */
+  --color-bg-hover: #efede9; /** 行やボタンにポインタが乗ったときの地 */
+  --color-bg-inverse: #1c1917; /** ツールチップ・コードブロックなど反転した面の地 */
+  --color-text-default: #1c1917; /** 本文・見出し・値 */
+  --color-text-muted: #57534e; /** ラベル・メタ情報・補足文 */
+  --color-text-placeholder: #78716c; /** プレースホルダー・空状態の案内 */
+  --color-text-subtle: #8c857d; /** アイコン・開閉の印・パス区切りなど補助的な表示。読ませる文章には使わない */
+  --color-text-disabled: #b5afa8; /** 無効な操作・ショートカット表記・区切り記号 */
+  --color-text-inverse: #ffffff; /** bg.inverse の上の文字 */
+  --color-border-default: #e7e5e4; /** ペイン境界・入力欄・カードの枠 */
+  --color-border-subtle: #f0eeeb; /** セクションやコメント間の区切り線 */
+  --color-border-strong: #d6d3d1; /** セカンダリボタン・フレームなど輪郭を立たせたい枠 */
+  --color-primary-default: #2563eb; /** 選択・アクティブタブ・フォーカスリング・主要な操作 */
+  --color-primary-subtle: #eff6ff; /** 選択中の行やハイライトの地 */
+  --color-primary-on: #ffffff; /** primary.default の上の文字やアイコン */
+  --color-component-default: #725aa8; /** コンポーネント・注釈・特殊種別を示す色（アイコン・名前・枠） */
+  --color-danger-default: #b91c1c; /** エラー・削除・破壊的な操作 */
+  --color-danger-subtle: #fee2e2; /** エラー表示・削除行の枠・地 */
+  --color-danger-on: #ffffff; /** danger.default の上の文字 */
+  --color-success-default: #15803d; /** 成功・追加・解決済みの表示 */
+  --color-success-subtle: #dcfce7; /** 成功・追加表示の地 */
+  --font-family-sans: system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** UI と本文 */
+  --font-family-mono: 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** コード・差分・ファイルパス */
+  --typography-heading-lg: 700 24px/1.3 system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** 文書タイトル・空状態の見出し */
+  --typography-heading-md: 600 16px/1.4 system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** ペイン・セクションの見出し */
+  --typography-label: 600 12px/1.4 system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** ツリー見出し・ツールバーのラベル・強調したい行 */
+  --typography-body-lg: 400 16px/1.65 system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** Markdown 本文など長文の閲覧テキスト */
+  --typography-body: 400 13px/1.5 system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** UI の既定の文字（ナビゲーション・入力値・ボタン・コメント） */
+  --typography-body-sm: 400 12px/1.45 system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** メタ情報・バッジ・補助説明 */
+  --typography-caption: 500 11px/1.35 system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', 'Segoe UI', sans-serif; /** パスバー・タイムスタンプなど最小の注記。本文には使わない */
+  --typography-code: 400 13px/1.5 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** コード・差分行・ファイルパス */
+  --space-2xs: 2px; /** アイコンと印の間など密着させたい隙間 */
+  --space-xs: 4px; /** 要素内の小さな隙間 */
+  --space-sm: 8px; /** 関連する要素どうしの間・リスト行内の間隔 */
+  --space-md: 14px; /** ペインやカードの内側の余白・既定の間隔 */
+  --space-lg: 24px; /** セクションどうしの間 */
+  --radius-sm: 4px; /** タグ・バッジ・小さな印 */
+  --radius-md: 7px; /** 入力欄・ボタン・タブ・選択行 */
+  --radius-lg: 10px; /** ポップオーバー・ダイアログ・カード */
+  --radius-full: 9999px; /** 丸ボタン・ピル・ステータスドット */
+}
