@@ -1,0 +1,48 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-bg-default: #151b23; /** カード・パネル・モーダルの地 */
+  --color-bg-subtle: #1c232e; /** 入力欄・補助ボタン・浮き上がったコントロールの地 */
+  --color-bg-canvas: #0d1117; /** ボード作業領域・ウィンドウの背景 */
+  --color-bg-hover: #252e3c; /** 行やボタンにポインタが乗ったときの地 */
+  --color-bg-inverse: #e6edf3; /** ツールチップなど反転した面の地 */
+  --color-text-default: #e6edf3; /** 本文・タスク名・見出し・値 */
+  --color-text-muted: #9aa4b1; /** ラベル・件数・補足情報 */
+  --color-text-placeholder: #7d8796; /** プレースホルダー・空状態の案内 */
+  --color-text-subtle: #6b7785; /** アイコン・開閉の印・補助メタなど。読ませる文章には使わない */
+  --color-text-disabled: #4d5764; /** 無効な操作・ショートカット表記・区切り記号 */
+  --color-text-inverse: #0d1117; /** bg.inverse の上の文字 */
+  --color-border-default: #28303c; /** カード境界・ペイン区切り・入力欄の枠 */
+  --color-border-subtle: #1f2630; /** セクションやリスト行の淡い区切り線 */
+  --color-border-strong: #3b4452; /** ホバー時・チェックボックス・強調したい枠 */
+  --color-primary-default: #79a1fc; /** 選択・アクティブ状態・フォーカスリング・主要な操作 */
+  --color-primary-subtle: #1b2945; /** 選択中の行・アクティブ項目の地 */
+  --color-primary-on: #0d1117; /** primary.default の上の文字やアイコン */
+  --color-component-default: #a78bfa; /** コンポーネント・カテゴリ・親要素を示す色（アイコン・名前・枠） */
+  --color-danger-default: #ff8a82; /** エラー・期限超過・破壊的な操作 */
+  --color-danger-subtle: #3a1818; /** エラー・期限超過バッジの枠・地 */
+  --color-danger-on: #0d1117; /** danger.default の上の文字 */
+  --color-success-default: #73ce95; /** 完了・同期正常・オープンの状態表示 */
+  --color-success-subtle: #102d1d; /** 完了・正常表示の地 */
+  --font-family-sans: Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** UI と本文 */
+  --font-family-mono: 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** タスク ID・ファイルパス・コード */
+  --typography-heading-lg: 700 22px/1.3 Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** 画面・詳細ビューの見出し */
+  --typography-heading-md: 600 15px/1.4 Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** カラム・パネル・ダイアログの見出し */
+  --typography-label: 600 12px/1.4 Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** サイドバーのグループ見出し・フォームラベル */
+  --typography-body-lg: 400 15px/1.55 Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** 詳細画面の本文・やや大きく読ませたい説明 */
+  --typography-body: 400 14px/1.5 Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** UI の既定の文字（カード・ツリー・ボタン・入力値） */
+  --typography-body-sm: 400 12px/1.45 Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** バッジ・メタ情報・コンパクトな一覧行 */
+  --typography-caption: 500 11px/1.35 Inter, 'Noto Sans JP', 'Hiragino Sans', system-ui, sans-serif; /** 件数カウント・キーボードヒント・補助注記 */
+  --typography-code: 400 12px/1.5 'JetBrains Mono', SFMono-Regular, Menlo, monospace; /** タスク ID・ファイルパス・フロントマター */
+  --space-2xs: 2px; /** アイコンと印の間など密着させたい隙間 */
+  --space-xs: 4px; /** バッジ内や行内の最小の隙間 */
+  --space-sm: 8px; /** カード内やボタン列など関連要素どうしの間 */
+  --space-md: 12px; /** パネル・カードの内側の余白・既定の間隔 */
+  --space-lg: 24px; /** セクション・カラム群どうしの間 */
+  --radius-sm: 4px; /** ラベル・ステータスバッジ・小さなアイコンボタン */
+  --radius-md: 6px; /** ボタン・入力欄・タブ・選択行 */
+  --radius-lg: 10px; /** カード・パネル・モーダル */
+  --radius-full: 9999px; /** 同期ピル・アバター・ステータスドット */
+}
